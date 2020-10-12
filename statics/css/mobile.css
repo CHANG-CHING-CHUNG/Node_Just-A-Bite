@@ -1,0 +1,234 @@
+@media (max-width: 812px) {
+  #main-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+
+  #main-nav ul {
+    margin-top: 10px;
+  }
+
+  #main-nav ul li {
+    margin-top: 5px;
+  }
+
+  #main-nav ul li + li {
+    margin-left: 0px;
+  }
+
+  #header-home .header-content {
+    height: 250px;
+  }
+
+  #home-a .text {
+    text-align: left;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  #home-a .text p {
+    margin-bottom: 10px;
+  }
+
+  #home-b .dishes {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #home-b .dishes img {
+    width: 50%;
+    min-height: 100%;
+  }
+
+  #home-c .comments {
+    flex-direction: column;
+  }
+
+  #home-c .comments .comment {
+    margin-bottom: 100px;
+  }
+  #home-c .comments .comment:last-child {
+    margin-bottom: 0;
+  }
+
+  #home-d .map {
+    padding-top: 15px;
+  }
+
+  #home-e {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #home-e .media {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #game-a {
+    padding-top: 20px;
+  }
+
+  #faq-container .faq-lists .list span {
+    margin-left: 30px;
+  }
+
+  #faq-container .faq-lists .list .questions {
+    padding-right: 20px;
+  }
+}
+
+@media (max-height: 600px) {
+  #home-a .btn-section {
+    justify-content: space-around;
+  }
+  #home-a .btn-section a {
+    padding: 1rem 1rem;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 0px;
+  }
+}
+
+@media (max-height: 500px) {
+  #main-nav ul li + li {
+    margin-left: 0px;
+  }
+  #header-home .header-content {
+    height: 230px;
+  }
+
+  #home-c {
+    padding: 0 1rem;
+  }
+
+  #home-c .comments .comment {
+    margin-right: 0;
+  }
+  #home-c .comment div {
+    max-width: 400px;
+    padding: 6rem 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  #home-a {
+    padding: 40px;
+  }
+
+  #home-b .dishes {
+    margin-bottom: 40px;
+  }
+  #main-nav .logo {
+    margin-bottom: 20px;
+  }
+  #main-nav ul {
+    flex-direction: column;
+  }
+
+  #header-home .header-content {
+    height: 150px;
+  }
+
+  .hd-36 {
+    font-size: 28px;
+  }
+
+  .btn-section {
+    flex-direction: column;
+  }
+
+  #home-a .btn-section a {
+    padding: 1rem 1rem;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  #home-c {
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+
+  #home-c .comments .comment {
+    margin-right: 0;
+  }
+
+  #home-c .comment div {
+    width: 100%;
+    min-height: 250px;
+  }
+
+  #home-e {
+    padding: 1rem;
+  }
+
+  #home-e ul {
+    text-align: left;
+  }
+
+  footer {
+    font-size: 16px;
+  }
+
+  #game-a .bonus {
+    width: 350px;
+  }
+  #game-a .bonus a {
+    min-width: 0;
+  }
+
+  .lottery .lottery_wrapper .text {
+    font-size: 26px;
+  }
+
+  .lottery .lottery_wrapper .lottery_btn {
+    padding: 18px 100px;
+  }
+}
+
+@media (max-height: 768px) and (max-width: 1024px) {
+  #main-nav {
+    padding: 20px 20px;
+    align-items: center;
+  }
+
+  #main-nav ul li + li {
+    margin-left: 0px;
+  }
+  #header-home .header-content {
+    height: 310px;
+  }
+
+  #home-b .dishes {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #home-b .dishes img {
+    width: 50%;
+    min-height: 100%;
+  }
+  #home-c .comments {
+    flex-direction: column;
+  }
+
+  #home-c .comments .comment {
+    margin-bottom: 100px;
+  }
+  #home-c .comments .comment:last-child {
+    margin-bottom: 0;
+  }
+}
