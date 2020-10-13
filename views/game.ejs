@@ -17,7 +17,7 @@
         <nav id="main-nav">
           <h1><a href="/" class="logo">Just A Bite!</a></h1>
           <ul>
-            <li><a href="#" class="active">抽個大獎</a></li>
+            <li><a href="/game" class="active">抽個大獎</a></li>
             <li><a href="#">我要點餐</a></li>
             <li><a href="#">查詢訂單</a></li>
             <li><a href="/faq">常見問題</a></li>
@@ -37,11 +37,11 @@
             </li>
             <li>
               <span>獎  品：</span>
-              ❤頭獎一名：日本東京來回雙人遊(市價14990元)
-              <br />
-              ❤貳獎三名：90 吋電視一台(市價5990元)
-              <br />
-              ❤參獎十名：知名 YouTuber簽名握手會入場券一張(市價1500元)
+              <% prizes.forEach((prize, i) => {%>
+                <% if (i === prizes.length - 1) return %>
+                ❤<%= prize.name %>
+                <br />
+              <% }) %>
             </li>
           </ul>
           <a href="/lottery" class="btn">我要抽獎</a>

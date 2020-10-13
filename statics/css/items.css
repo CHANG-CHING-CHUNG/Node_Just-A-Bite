@@ -109,3 +109,7 @@ button {
 .error p {
   margin-bottom: 0;
 }
+
+.delete {
+  background: #aa5858;
+}

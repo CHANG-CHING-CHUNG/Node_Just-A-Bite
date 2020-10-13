@@ -25,9 +25,10 @@
         </nav>
       </header>
 
-      <section class="lottery">
+      <section class="lottery" style="background: url('/images/<%= prize.image %>') no-repeat center center/cover;">
         <div class="lottery_wrapper">
-          <p class="text"></p>
+          <p class="text"><%= prize.name  %></p>
+          <p class="text"><%= prize.description  %></p>
           <a href="/game" class="lottery_btn btn">我要抽獎</a>
         </div>
       </section>
@@ -60,6 +61,6 @@
       </footer>
     </div>
 
-    <script src="/js/lottery.js"></script>
+    
   </body>
 </html>

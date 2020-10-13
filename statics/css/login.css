@@ -50,3 +50,7 @@ form {
 .error p {
   margin-bottom: 0;
 }
+
+.login {
+  margin-top: 10%;
+}

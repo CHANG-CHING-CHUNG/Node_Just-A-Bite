@@ -3,21 +3,21 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Prizes', [{
-      name: '東京迪士尼來回機票',
+      name: '[頭獎]東京迪士尼來回機票',
       image: 'disney.jps',
       description: '東京迪士尼五天四夜遊~',
       probability:'1',
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      name: 'Iphone-20',
+      name: '[二獎]Iphone-20',
       image: 'iphone.jpg',
       description: '最新款 Iphone 手機!',
       probability:'10',
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      name: '溫泉泡湯券',
+      name: '[三獎]溫泉泡湯券',
       image: 'John',
       description: '新竹尖石溫泉泡湯券',
       probability:'20',
