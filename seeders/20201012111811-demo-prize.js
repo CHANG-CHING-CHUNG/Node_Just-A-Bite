@@ -18,7 +18,7 @@ module.exports = {
       updatedAt: new Date()
     },{
       name: '[三獎]溫泉泡湯券',
-      image: 'John',
+      image: 'hot_spring.jpg',
       description: '新竹尖石溫泉泡湯券',
       probability:'20',
       createdAt: new Date(),
