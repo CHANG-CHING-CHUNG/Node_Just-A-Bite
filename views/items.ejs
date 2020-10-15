@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/mobile.css" />
+  <link rel="stylesheet" href="/css/items.css" />
+  <script
+  src="https://kit.fontawesome.com/2e55deee48.js"
+  crossorigin="anonymous"
+  ></script>
+  <title>咬一口廚房</title>
+</head>
+
+<body>
+  <div id="page-container">
+    <div id="content-wrap">
+      <div class="container">
+        <header id="header-home">
+          <nav id="main-nav">
+            <h1><a href="/admin" class="logo">Just A Bite! 抽獎管理頁面</a></h1>
+            <ul>
+              <li><a href="/game" >抽獎頁面</a></li>
+              <li><a href="/admin" >獎項列表</a></li>
+              <li><a href="/items" class="active">管理獎項</a></li>
+              <li><a href="/logout">登出</a></li>
+            </ul>
+          </nav>
+        </header>
+    
+        <section class="items center "style="width: 70%;">
+          <% if (errorMessage.length) { %>
+            <div class="message error validation_errors">
+              <p><%= errorMessage %></p>
+            </div>
+          <% }%>
+          <div>
+            <h1>更新獎項內容</h1>
+            <p>
+              機率設定方式: 按下重置鈕將所有獎項機率歸零，
+              <br>
+              然後再一項一項設定機率並送出。
+              <br>
+              注意，機率的總合必須是100%
+            </p>
+          </div>
+          <table class="authority">
+            <tbody>
+              <tr>
+                <th>獎品名</th>
+                <th>圖片</th>
+                <th>描述</th>
+                <th>機率</th>
+              </tr>
+    
+              <% if (prizes.length) { %>
+                <% prizes.forEach((prize, i) => { %>
+              <form id="add_role_form<%=i%>" enctype="multipart/form-data" action="/handleUpdate" method="POST"></form>
+                <tr>
+                  <input type="hidden" name="item_id" form="add_role_form<%=i%>" value="<%= prize.id %>">
+                  <td>
+                    <input required="" class="input-role" name="item_name" type="text" form="add_role_form<%=i%>" value="<%= prize.name %>">
+                  </td>
+                  <td>
+                    <label class="create-btn">
+                      <input class="file" type="file" name="item_image" form="add_role_form<%=i%>">
+                      <i class="fa fa-photo" aria-hidden="true"></i> 上傳圖片
+                    </label>
+                  </td>
+                  <td>
+                    <input required="" class="input-role" name="item_desc" type="text" form="add_role_form<%=i%>" value="<%= prize.description %>">
+                  </td>
+                  <td>
+                    <input required="" class="input-role" name="item_proba" type="text" form="add_role_form<%=i%>" value="<%= prize.probability %>">
+                    <button class="admin-btn add_role_btn" form="add_role_form<%=i%>">送出</button>
+                    <a href="/handleDeleteItem/<%= prize.id%>"><button class="admin-btn add_role_btn delete" >刪除</button></a>
+                  </td>
+                </tr>
+              <% }) %>
+              <% } %>
+            </tbody>
+          </table>
+          <a href="/handleReset"><button class="admin-btn add_role_btn" >重置</button></a>
+    
+    
+          <div>
+            <h1>新增獎項</h1>
+            <p>
+              預設機率為0
+              <br>
+              新增完之後再從上面的更新獎項區塊設定你要的機率。
+            </p>
+          </div>
+          <table class="authority">
+            <tbody>
+              <tr>
+                <th>獎品名</th>
+                <th>圖片</th>
+                <th>描述</th>
+              </tr>
+              <form id="create-prize" enctype="multipart/form-data" action="/handleCreatePrize" method="POST"></form>
+                <tr>
+                  <td>
+                    <input required="" class="input-role" name="item_name" type="text" form="create-prize">
+                  </td>
+                  <td>
+                    <label class="create-btn">
+                      <input class="file" type="file" name="item_image" form="create-prize">
+                      <i class="fa fa-photo" aria-hidden="true"></i> 上傳圖片
+                    </label>
+                  </td>
+                  <td>
+                    <input required="" class="input-role" name="item_desc" type="text" form="create-prize">
+                    <button class="admin-btn add_role_btn" form="create-prize">送出</button>
+                  </td>
+                <tr>
+            </tbody>
+          </table>
+        </section>
+        <div class="footer">
+          <section id="home-e">
+            <ul>
+              <li>餐館地址: 天上地下天堂路三分之一里六段520號</li>
+              <li>訂位專線：02-1314-5566</li>
+              <li>
+                營業時間：週一〜週五 09:00~18:00 /
+                週六、週日、國定假日（含連假）休息
+              </li>
+              <li>email：service@justabite.com.tw</li>
+            </ul>
+            <div class="media">
+              <div class="logo">Just A Bite!</div>
+              <div class="medias">
+                <a href="#">Facebook</a>
+                /
+                <a href="#">Instagram</a>
+                /
+                <a href="#">Youtube</a>
+              </div>
+            </div>
+          </section>
+      
+          <footer>
+            Copyright © 2020 Just A Bite All Rights Reserved.
+            咬一口股份有限公司版權所有
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

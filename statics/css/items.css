@@ -1,0 +1,115 @@
+.center {
+  margin: 0 auto;
+  margin-bottom: 0px;
+}
+
+.items {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.authority {
+  margin-top: 2rem;
+}
+.authority {
+  font-family: "Noto Sans TC", sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+.authority th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #6671ac;
+  color: white;
+}
+.authority td, .authority th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.input-role {
+  padding: 7px 0;
+}
+
+.admin-btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #008cba;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-left: 20px;
+  border: none;
+}
+button {
+  cursor: pointer;
+}
+
+.create-btn {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 4px;
+}
+
+.file {
+  display: none;
+}
+
+.add_role_btn {
+  margin: 0 auto;
+  margin-top: 15px;
+  display: block;
+  min-width: 150px;
+}
+
+
+.message {
+  width: 100%;
+  margin: 0px auto;
+      margin-bottom: 0px;
+  padding: 10px 0px;
+  color: #3c763d;
+  background: #dff0d8;
+  border: 1px solid #3c763d;
+  border-radius: 5px;
+  text-align: center;
+}
+.error {
+  color: #a94442;
+  background: #f2dede;
+  border: 1px solid #a94442;
+  margin-bottom: 20px;
+}
+
+
+.error p {
+  margin-bottom: 0;
+}
+
+.delete {
+  background: #aa5858;
+}

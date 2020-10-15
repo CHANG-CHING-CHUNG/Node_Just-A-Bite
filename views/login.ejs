@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Questrial&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/login.css">
+    <title>咬一口廚房</title>
+  </head>
+  <body>
+    <div id="page-container">
+      <div id="content-wrap">
+        <div class="container">
+          <header id="header-home">
+            <nav id="main-nav">
+              <h1><a href="/admin" class="logo">Just A Bite! 抽獎管理頁面</a></h1>
+                <ul>
+                  <li><a href="/game" >抽獎頁面</a></li>
+                  <li><a href="/admin">獎項列表</a></li>
+                  <li><a href="/login" class="active">登入</a></li>
+                </ul>
+            </nav>
+          </header>
+    
+          <section class="login">
+            <form method="POST" action="/handleLogin">
+              <% if (errorMessage.length) { %>
+              <div class="message error validation_errors">
+                <p><%= errorMessage %></p>
+              </div>
+              <% }%>
+              <label for="uname">username</label>
+              <input type="text" id="uname" name="username" placeholder="Your username..">
+          
+              <label for="psword">password</label>
+              <input type="password" id="psword" name="password" placeholder="Your password..">
+          
+              <input type="submit" value="Submit">
+            </form>
+          </section>
+    
+    
+          <div class="footer">
+            <section id="home-e">
+              <ul>
+                <li>餐館地址: 天上地下天堂路三分之一里六段520號</li>
+                <li>訂位專線：02-1314-5566</li>
+                <li>
+                  營業時間：週一〜週五 09:00~18:00 /
+                  週六、週日、國定假日（含連假）休息
+                </li>
+                <li>email：service@justabite.com.tw</li>
+              </ul>
+              <div class="media">
+                <div class="logo">Just A Bite!</div>
+                <div class="medias">
+                  <a href="#">Facebook</a>
+                  /
+                  <a href="#">Instagram</a>
+                  /
+                  <a href="#">Youtube</a>
+                </div>
+              </div>
+            </section>
+        
+            <footer>
+              Copyright © 2020 Just A Bite All Rights Reserved.
+              咬一口股份有限公司版權所有
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
