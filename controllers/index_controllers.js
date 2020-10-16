@@ -69,6 +69,11 @@ const index_controller = {
     let prizes = await Prize.findAll({
       order:[['probability','ASC']]
     });
+    console.log(prizes)
+    if (!prizes.length) {
+      req.flash('errorMessage', '資料庫獎項為空');
+      return res.redirect('/game');
+    }
     const probaOfPrizes = prizes.map(prize => {
       if(prize.probability === 0) {
         return prize.probability = 1;

@@ -8,10 +8,7 @@
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/mobile.css" />
   <link rel="stylesheet" href="/css/items.css" />
-  <script
-  src="https://kit.fontawesome.com/2e55deee48.js"
-  crossorigin="anonymous"
-  ></script>
+  <script src="https://kit.fontawesome.com/2e55deee48.js" crossorigin="anonymous"></script>
   <title>咬一口廚房</title>
 </head>
 
@@ -23,101 +20,105 @@
           <nav id="main-nav">
             <h1><a href="/admin" class="logo">Just A Bite! 抽獎管理頁面</a></h1>
             <ul>
-              <li><a href="/game" >抽獎頁面</a></li>
-              <li><a href="/admin" >獎項列表</a></li>
-              <li><a href="/items" class="active">管理獎項</a></li>
-              <li><a href="/product">管理商品</a></li>
+              <li><a href="/game">抽獎頁面</a></li>
+              <li><a href="/admin">獎項列表</a></li>
+              <li><a href="/items">管理獎項</a></li>
+              <li><a href="/product" class="active">管理商品</a></li>
               <li><a href="/logout">登出</a></li>
             </ul>
           </nav>
         </header>
-    
-        <section class="items center "style="width: 70%;">
+
+        <section class="items center " style="width: 70%;">
           <% if (errorMessage.length) { %>
-            <div class="message error validation_errors">
-              <p><%= errorMessage %></p>
-            </div>
+          <div class="message error validation_errors">
+            <p><%= errorMessage %></p>
+          </div>
           <% }%>
           <div>
-            <h1>更新獎項內容</h1>
+            <h1>編輯商品</h1>
             <p>
-              機率設定方式: 按下重置鈕將所有獎項機率歸零，
+              商品更新方式: 直接在輸入框更改內容
               <br>
-              然後再一項一項設定機率並送出。
+              直接在輸入框更改內容，
               <br>
-              注意，機率的總合必須是100%
+              改完後，按下送出即更新該筆內容
             </p>
           </div>
           <table class="authority">
             <tbody>
               <tr>
-                <th>獎品名</th>
+                <th>商品名</th>
                 <th>圖片</th>
-                <th>描述</th>
-                <th>機率</th>
+                <th>價格</th>
+                <th>數量</th>
               </tr>
-    
-              <% if (prizes.length) { %>
-                <% prizes.forEach((prize, i) => { %>
-              <form id="add_role_form<%=i%>" enctype="multipart/form-data" action="/handleUpdate" method="POST"></form>
+              <% if(products.length) { %>
+              <% products.forEach((product, i) =>  { %>
+                <form id="add_role_form<%=i%>" enctype="multipart/form-data" action="/handleUpdateProduct" method="POST"></form>
                 <tr>
-                  <input type="hidden" name="item_id" form="add_role_form<%=i%>" value="<%= prize.id %>">
+                  <input type="hidden" name="product_id" form="add_role_form<%=i%>" value="<%= product.id %>">
                   <td>
-                    <input required="" class="input-role" name="item_name" type="text" form="add_role_form<%=i%>" value="<%= prize.name %>">
+                    <input required="" class="input-role" name="product_name" type="text" form="add_role_form<%=i%>"
+                      value="<%= product.item_name %>">
                   </td>
                   <td>
                     <label class="create-btn">
-                      <input class="file" type="file" name="item_image" form="add_role_form<%=i%>">
+                      <input class="file" type="file" name="product_image" form="add_role_form<%=i%>">
                       <i class="fa fa-photo" aria-hidden="true"></i> 上傳圖片
                     </label>
                   </td>
                   <td>
-                    <input required="" class="input-role" name="item_desc" type="text" form="add_role_form<%=i%>" value="<%= prize.description %>">
+                    <input required="" class="input-role" name="product_price" type="text" form="add_role_form<%=i%>"
+                      value="<%= product.item_price %>">
                   </td>
                   <td>
-                    <input required="" class="input-role" name="item_proba" type="text" form="add_role_form<%=i%>" value="<%= prize.probability %>">
+                    <input required="" class="input-role" name="product_quantity" type="text" form="add_role_form<%=i%>"
+                      value="<%= product.item_quantity %>">
                     <button class="admin-btn add_role_btn" form="add_role_form<%=i%>">送出</button>
-                    <a href="/handleDeleteItem/<%= prize.id%>"><button class="admin-btn add_role_btn delete" >刪除</button></a>
+                    <a href="/handleDeleteProduct/<%= product.id%>"><button
+                        class="admin-btn add_role_btn delete">刪除</button></a>
                   </td>
                 </tr>
               <% }) %>
-              <% } %>
+              <% }%>
             </tbody>
           </table>
-          <a href="/handleReset"><button class="admin-btn add_role_btn" >重置</button></a>
-    
-    
+
+
           <div>
-            <h1>新增獎項</h1>
+            <h1>新增商品</h1>
             <p>
-              預設機率為0
-              <br>
-              新增完之後再從上面的更新獎項區塊設定你要的機率。
+              填完內容按下送出即可
             </p>
           </div>
           <table class="authority">
             <tbody>
               <tr>
-                <th>獎品名</th>
+                <th>商品名</th>
                 <th>圖片</th>
-                <th>描述</th>
+                <th>價格</th>
+                <th>數量</th>
               </tr>
               <form id="create-prize" enctype="multipart/form-data" action="/handleCreatePrize" method="POST"></form>
-                <tr>
-                  <td>
-                    <input required="" class="input-role" name="item_name" type="text" form="create-prize">
-                  </td>
-                  <td>
-                    <label class="create-btn">
-                      <input class="file" type="file" name="item_image" form="create-prize">
-                      <i class="fa fa-photo" aria-hidden="true"></i> 上傳圖片
-                    </label>
-                  </td>
-                  <td>
-                    <input required="" class="input-role" name="item_desc" type="text" form="create-prize">
-                    <button class="admin-btn add_role_btn" form="create-prize">送出</button>
-                  </td>
-                <tr>
+              <tr>
+                <td>
+                  <input required="" class="input-role" name="item_name" type="text" form="create-prize">
+                </td>
+                <td>
+                  <label class="create-btn">
+                    <input class="file" type="file" name="item_image" form="create-prize">
+                    <i class="fa fa-photo" aria-hidden="true"></i> 上傳圖片
+                  </label>
+                </td>
+                <td>
+                  <input required="" class="input-role" name="item_name" type="text" form="create-prize">
+                </td>
+                <td>
+                  <input required="" class="input-role" name="item_desc" type="text" form="create-prize">
+                  <button class="admin-btn add_role_btn" form="create-prize">送出</button>
+                </td>
+              <tr>
             </tbody>
           </table>
         </section>
@@ -143,7 +144,7 @@
               </div>
             </div>
           </section>
-      
+
           <footer>
             Copyright © 2020 Just A Bite All Rights Reserved.
             咬一口股份有限公司版權所有

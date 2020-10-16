@@ -9,6 +9,7 @@
     />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/error.css" />
     <title>咬一口廚房</title>
   </head>
   <body>
@@ -27,6 +28,11 @@
 
       <section id="game-a">
         <div class="bonus">
+          <% if (errorMessage.length) { %>
+            <div class="message error validation_errors">
+              <p><%= errorMessage %></p>
+            </div>
+          <% }%>
           <h2>2020 夏日輕盈特賞！ 抽獎活動辦法</h2>
           <ul>
             <li><span>活動期間：</span>2020/06/01~2020/07/01</li>
@@ -37,11 +43,13 @@
             </li>
             <li>
               <span>獎  品：</span>
+              <% if(prizes.length) { %>
               <% prizes.forEach((prize, i) => {%>
                 <% if (i === prizes.length - 1) return %>
                 ❤<%= prize.name %>
                 <br />
               <% }) %>
+              <% } %>
             </li>
           </ul>
           <a href="/lottery" class="btn">我要抽獎</a>
