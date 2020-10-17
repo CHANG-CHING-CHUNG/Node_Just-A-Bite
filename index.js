@@ -67,6 +67,11 @@ app.post('/handleUpdateProduct', admin_controller.handleUpdateProduct, redirectB
 app.get('/handleDeleteProduct/:product_id', admin_controller.handleDeleteProduct, redirectBack);
 app.post('/handleCreateProduct', admin_controller.handleCreateProduct,redirectBack);
 
+app.get('/admin_faq', admin_controller.adminFaq);
+app.post('/handleUpdateFaq',admin_controller.handleUpdateFaq,redirectBack);
+app.get('/handleDeleteFaq/:faq_id', admin_controller.handleDeleteFaq,redirectBack);
+app.post('/handleCreateFaq/', admin_controller.handleCreateFaq,redirectBack);
+
 
 
 

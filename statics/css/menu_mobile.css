@@ -16,5 +16,28 @@
 
   .menu-desc .right {
     align-items: center;
-}
+    margin-left: 0;
+  }
+
+  #header-home .menu_header-content {
+    display: none;
+  }
+  .menu-desc .left img {
+    display: none;
+  }
+
+  .menu-desc,
+  .menu-order {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .order-list {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .order-item {
+    margin-right: 0;
+  }
 }

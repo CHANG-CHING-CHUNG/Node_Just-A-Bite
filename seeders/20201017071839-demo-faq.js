@@ -26,12 +26,6 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },{
-      faq_title: '如何辦理退貨 ? ',
-      faq_content: '請您於鑑賞期七日內利用【退貨服務】直接辦理退貨，退貨運費將由lativ為您負擔。（若退貨後商品未達免運標準，則原始訂單將加計公告運費）。 ',
-      faq_order: 4,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
       faq_title: '什麼情況無法辦理退貨？',
       faq_content: `1. 超過7天退貨期限。
       2. 基於安全和衛生考量，貼身用品如內衣褲，襪子類等商品，若拆除安心縫線，恕不接受退貨。
@@ -39,7 +33,7 @@ module.exports = {
       4. 商品已剪標、已下水洗滌、修改尺寸、其他加工，商品或配件丟失或損毀。
       5. 活動贈品未退回。
       貼心叮嚀：如因個人因素退貨次數過多，lativ將視情況決定是否暫停出貨，煩請見諒。 `,
-      faq_order: 5,
+      faq_order: 4,
       createdAt: new Date(),
       updatedAt: new Date()
     },{
