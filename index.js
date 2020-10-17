@@ -37,6 +37,7 @@ app.use('/js', express.static(__dirname + '/statics/js'));
 app.use('/handleUpdate',formidableMiddleware());
 app.use('/handleCreatePrize',formidableMiddleware());
 app.use('/handleUpdateProduct',formidableMiddleware());
+app.use('/handleCreateProduct',formidableMiddleware());
 
 
 
@@ -63,7 +64,8 @@ app.post('/handleCreatePrize',admin_controller.handleCreatePrize, redirectBack);
 
 app.get('/product', admin_controller.product);
 app.post('/handleUpdateProduct', admin_controller.handleUpdateProduct, redirectBack);
-app.get('/handleDeleteProduct/:product_id', admin_controller.handleDeleteProduct);
+app.get('/handleDeleteProduct/:product_id', admin_controller.handleDeleteProduct, redirectBack);
+app.post('/handleCreateProduct', admin_controller.handleCreateProduct,redirectBack);
 
 
 

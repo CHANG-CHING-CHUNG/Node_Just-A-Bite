@@ -1,5 +1,6 @@
 const db =require('../models');
 const Prize = db.Prize;
+const Item = db.Item;
 
 function drawLottery(probaArr)  {
   const proba = probaArr;
@@ -87,7 +88,9 @@ const index_controller = {
   },
 
   menu: async (req, res) => {
-    res.render('menu');
+    const products = await Item.findAll();
+
+    res.render('menu', { products:products });
   }
 };
 

@@ -225,7 +225,6 @@ const admin_controller = {
     const products = await Item.findAll({
       order: [["item_price", "ASC"]]
     });
-    console.log(products)
 
     res.render('product', { products:products });
   },
@@ -280,8 +279,59 @@ const admin_controller = {
     })
     res.redirect('/product')
   },
-  handleDeleteProduct: async (req, res) => {
+  handleDeleteProduct: async (req, res, next) => {
+    let { product_id } = req.params;
+    product_id = parseInt(product_id);
+    if(product_id) {
+      Item.destroy({
+        where:{
+          id:product_id
+        }
+      })
+    } else {
+      req.flash('errorMessage', '刪除失敗');
+      return next()
+    }
 
+    return next();
+  },
+
+  handleCreateProduct: async (req, res, next) => {
+    const { product_name, product_price, product_quantity} = req.fields;
+    const { product_image } = req.files;
+
+    if (!product_image.size) {
+      await Item.create({
+        item_name:product_name,
+        item_price:product_price,
+        item_quantity:product_quantity
+      })
+     return next()
+    }
+
+    if (product_image.type.match(/image/)) {
+      let oldpath = product_image.path;
+      let newpath = `./statics/item_images/${product_image.name}`;
+      fs.copyFile(oldpath, newpath, (err) => {
+        if(err) throw err;
+        console.log("uploaded")
+        fs.unlink(oldpath, (err) => {
+          if (err) throw err;
+          console.log('the old file has been deleted');
+        })
+      })
+    } else {
+      req.flash('errorMessage', '只能上傳圖片檔');
+      return next()
+    }
+
+    await Item.create({
+      item_name:product_name,
+      item_price:product_price,
+      item_quantity:product_quantity,
+      item_image:product_image.name
+    })
+    return next()
   }
 };
 
