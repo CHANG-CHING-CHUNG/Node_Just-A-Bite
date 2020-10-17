@@ -222,6 +222,10 @@ const admin_controller = {
    
   },
   product: async (req, res) => {
+    const { userId } = req.session;
+    if (!userId) {
+      return res.redirect('/admin');
+    }
     const products = await Item.findAll({
       order: [["item_price", "ASC"]]
     });
@@ -280,6 +284,10 @@ const admin_controller = {
     res.redirect('/product')
   },
   handleDeleteProduct: async (req, res, next) => {
+    const { userId } = req.session;
+    if (!userId) {
+      return res.redirect('/admin');
+    }
     let { product_id } = req.params;
     product_id = parseInt(product_id);
     if(product_id) {
@@ -297,6 +305,10 @@ const admin_controller = {
   },
 
   handleCreateProduct: async (req, res, next) => {
+    const { userId } = req.session;
+    if (!userId) {
+      return res.redirect('/admin');
+    }
     const { product_name, product_price, product_quantity} = req.fields;
     const { product_image } = req.files;
 
