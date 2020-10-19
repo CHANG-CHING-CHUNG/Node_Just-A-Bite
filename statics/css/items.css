@@ -113,3 +113,7 @@ button {
 .delete {
   background: #aa5858;
 }
+
+section.items {
+  overflow-x: scroll;
+}
