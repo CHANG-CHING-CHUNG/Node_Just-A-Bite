@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Questrial&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/menu.css" />
+    <link rel="stylesheet" href="/css/menu_mobile.css" />
+    <title>咬一口廚房</title>
+  </head>
+  <body>
+    <div class="container">
+      <header id="header-home">
+        <nav id="main-nav">
+          <h1><a href="/" class="logo">Just A Bite!</a></h1>
+          <ul>
+            <li><a href="/game">抽個大獎</a></li>
+            <li><a class="active" href="/menu">我要點餐</a></li>
+            <li><a href="#">查詢訂單</a></li>
+            <li><a href="/faq">常見問題</a></li>
+          </ul>
+        </nav>
+        <div class="menu_header-content"></div>
+      </header>
+
+      <section id="home-b">
+        <div class="intro">
+          <div class="title">
+            <div class="dot"></div>
+            <h2 class="hd-36">熱銷搶購中</h2>
+          </div>
+          <div class="dishes">
+            <div class="overlay-parent">
+              <div class="soldout">售完</div>
+              <div class="overlay">
+                <img src="/soldout/售完1.png" alt="" />
+              </div>
+            </div>
+            <div class="overlay-parent">
+              <div class="soldout">售完</div>
+              <div class="overlay">
+                <img src="/soldout/售完2.png" alt="" />
+              </div>
+            </div>
+            <div class="overlay-parent">
+              <div class="soldout">售完</div>
+              <div class="overlay">
+                <img src="/soldout/售完3.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-desc">
+        <div class="left"><img src="/imgs/order-left.png" /></div>
+        <div class="right">
+          <h1>
+            在家也能輕鬆
+            <br />
+            咬一口我們的鮮甜清爽
+          </h1>
+          <p>
+            您再也不必受限於時間或地點，隨時隨地透過我們24小時的線上購物選購，咬一口廚房堅持以細選食材、
+            <br />
+            輕盈口感，呈現食材本身的原滋原味。
+          </p>
+          <p>
+            我們將咬一口的經典菜色研發製成相應當季的包裝食品及各式精美的伴手禮盒。將剛出爐的新鮮迅速送達
+            <br />
+            家人手中，也適合與更多喜愛咬一口的親朋好友分享難得的健康滋味。
+          </p>
+        </div>
+      </section>
+
+      <section class="menu-order">
+        <div class="order-container">
+          <div class="order-title">
+            <h1>立 即 輕 鬆 選 購</h1>
+            <span class="bottom-arrow"></span>
+          </div>
+          <div class="order-list">
+            <% if( products.length ) { %> <% products.forEach((product) => { %>
+            <div class="order-item">
+              <img
+                src="/item_images/<%= product.item_image %>"
+                class="item-img"
+              />
+              <p class="item-detail">
+                <%= product.item_name %> | $<%= product.item_price %>
+              </p>
+              <form
+                method="POST"
+                action="/addToCart"
+                id="add-to-cart<%= product.id %>"
+              ></form>
+              <button
+                form="add-to-cart<%= product.id %>"
+                class="order-add-cart"
+              >
+                加入購物車
+              </button>
+            </div>
+            <% }) %> <% }%>
+          </div>
+        </div>
+      </section>
+
+      <section id="home-d">
+        <div class="intro">
+          <div class="title">
+            <div class="dot"></div>
+            <h2 class="hd-36">我們在哪裡</h2>
+          </div>
+        </div>
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0028901837136!2d121.56235021546757!3d25.03397598397231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6da80a7ad%3A0xacc4d11dc963103c!2z5Y-w5YyXMTAx!5e0!3m2!1szh-TW!2stw!4v1594729876478!5m2!1szh-TW!2stw"
+            width="100%"
+            height="455px"
+            frameborder="0"
+            style="border: 0"
+            allowfullscreen=""
+            aria-hidden="false"
+            tab="0"
+          ></iframe>
+        </div>
+      </section>
+
+      <section id="home-e">
+        <ul>
+          <li>餐館地址: 天上地下天堂路三分之一里六段520號</li>
+          <li>訂位專線：02-1314-5566</li>
+          <li>
+            營業時間：週一〜週五 09:00~18:00 /
+            週六、週日、國定假日（含連假）休息
+          </li>
+          <li>email：service@justabite.com.tw</li>
+        </ul>
+        <div class="media">
+          <div class="logo">Just A Bite!</div>
+          <div class="medias">
+            <a href="#">Facebook</a>
+            /
+            <a href="#">Instagram</a>
+            /
+            <a href="#">Youtube</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Copyright © 2020 Just A Bite All Rights Reserved.
+        咬一口股份有限公司版權所有
+      </footer>
+    </div>
+  </body>
+</html>

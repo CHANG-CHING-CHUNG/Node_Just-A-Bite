@@ -1,0 +1,43 @@
+@media (max-height: 768px) and (max-width: 1024px) {
+  #home-b .dishes img {
+    width: 100%;
+  }
+
+  .menu-desc {
+    flex-direction: column;
+  }
+
+  .menu-desc .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+
+  .menu-desc .right {
+    align-items: center;
+    margin-left: 0;
+  }
+
+  #header-home .menu_header-content {
+    display: none;
+  }
+  .menu-desc .left img {
+    display: none;
+  }
+
+  .menu-desc,
+  .menu-order {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .order-list {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .order-item {
+    margin-right: 0;
+  }
+}

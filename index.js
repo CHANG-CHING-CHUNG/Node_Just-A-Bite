@@ -30,10 +30,14 @@ app.use((req, res, next) => {
 app.use('/css', express.static(__dirname + '/statics/css'));
 app.use('/images', express.static(__dirname + '/statics/images'));
 app.use('/imgs', express.static(__dirname + '/statics/imgs'));
+app.use('/item_images', express.static(__dirname + '/statics/item_images'));
+app.use('/soldout', express.static(__dirname + '/statics/soldout'));
 app.use('/js', express.static(__dirname + '/statics/js'));
 
 app.use('/handleUpdate',formidableMiddleware());
 app.use('/handleCreatePrize',formidableMiddleware());
+app.use('/handleUpdateProduct',formidableMiddleware());
+app.use('/handleCreateProduct',formidableMiddleware());
 
 
 
@@ -45,6 +49,7 @@ app.get('/', index_controller.index);
 app.get('/faq', index_controller.faq);
 app.get('/game', index_controller.game);
 app.get('/lottery', index_controller.lottery);
+app.get('/menu',index_controller.menu);
 
 app.get('/admin', admin_controller.admin);
 app.get('/login', admin_controller.login);
@@ -56,6 +61,17 @@ app.post('/handleUpdate',admin_controller.handleUpdate ,redirectBack);
 app.get('/handleDeleteItem/:item_id',admin_controller.handleDeleteItem ,redirectBack);
 app.get('/handleReset',admin_controller.handleReset ,redirectBack);
 app.post('/handleCreatePrize',admin_controller.handleCreatePrize, redirectBack);
+
+app.get('/product', admin_controller.product);
+app.post('/handleUpdateProduct', admin_controller.handleUpdateProduct, redirectBack);
+app.get('/handleDeleteProduct/:product_id', admin_controller.handleDeleteProduct, redirectBack);
+app.post('/handleCreateProduct', admin_controller.handleCreateProduct,redirectBack);
+
+app.get('/admin_faq', admin_controller.adminFaq);
+app.post('/handleUpdateFaq',admin_controller.handleUpdateFaq,redirectBack);
+app.get('/handleDeleteFaq/:faq_id', admin_controller.handleDeleteFaq,redirectBack);
+app.post('/handleCreateFaq/', admin_controller.handleCreateFaq,redirectBack);
+
 
 
 

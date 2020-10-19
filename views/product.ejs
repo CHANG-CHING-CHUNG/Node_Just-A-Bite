@@ -29,8 +29,8 @@
               <ul>
                 <li><a href="/game">抽獎頁面</a></li>
                 <li><a href="/admin">獎項列表</a></li>
-                <li><a href="/items" class="active">管理獎項</a></li>
-                <li><a href="/product">管理商品</a></li>
+                <li><a href="/items">管理獎項</a></li>
+                <li><a href="/product" class="active">管理商品</a></li>
                 <li><a href="/admin_faq">管理常見問題</a></li>
                 <li><a href="/logout">登出</a></li>
               </ul>
@@ -44,46 +44,46 @@
             </div>
             <% }%>
             <div>
-              <h1>更新獎項內容</h1>
+              <h1>編輯商品</h1>
               <p>
-                機率設定方式: 按下重置鈕將所有獎項機率歸零，
+                商品更新方式: 直接在輸入框更改內容
                 <br />
-                然後再一項一項設定機率並送出。
+                直接在輸入框更改內容，
                 <br />
-                注意，機率的總合必須是100%
+                改完後，按下送出即更新該筆內容
               </p>
             </div>
             <table class="authority">
               <tbody>
                 <tr>
-                  <th>獎品名</th>
+                  <th>商品名</th>
                   <th>圖片</th>
-                  <th>描述</th>
-                  <th>機率</th>
+                  <th>價格</th>
+                  <th>數量</th>
                 </tr>
-
-                <% if (prizes.length) { %> <% prizes.forEach((prize, i) => { %>
+                <% if(products.length) { %> <% products.forEach((product, i) =>
+                { %>
                 <form
                   id="add_role_form<%=i%>"
                   enctype="multipart/form-data"
-                  action="/handleUpdate"
+                  action="/handleUpdateProduct"
                   method="POST"
                 ></form>
                 <tr>
                   <input
                     type="hidden"
-                    name="item_id"
+                    name="product_id"
                     form="add_role_form<%=i%>"
-                    value="<%= prize.id %>"
+                    value="<%= product.id %>"
                   />
                   <td>
                     <input
                       required=""
                       class="input-role"
-                      name="item_name"
+                      name="product_name"
                       type="text"
                       form="add_role_form<%=i%>"
-                      value="<%= prize.name %>"
+                      value="<%= product.item_name %>"
                     />
                   </td>
                   <td>
@@ -91,7 +91,7 @@
                       <input
                         class="file"
                         type="file"
-                        name="item_image"
+                        name="product_image"
                         form="add_role_form<%=i%>"
                       />
                       <i class="fa fa-photo" aria-hidden="true"></i> 上傳圖片
@@ -101,20 +101,20 @@
                     <input
                       required=""
                       class="input-role"
-                      name="item_desc"
+                      name="product_price"
                       type="text"
                       form="add_role_form<%=i%>"
-                      value="<%= prize.description %>"
+                      value="<%= product.item_price %>"
                     />
                   </td>
                   <td>
                     <input
                       required=""
                       class="input-role"
-                      name="item_proba"
+                      name="product_quantity"
                       type="text"
                       form="add_role_form<%=i%>"
-                      value="<%= prize.probability %>"
+                      value="<%= product.item_quantity %>"
                     />
                     <button
                       class="admin-btn add_role_btn"
@@ -122,39 +122,33 @@
                     >
                       送出
                     </button>
-                    <a href="/handleDeleteItem/<%= prize.id%>"
+                    <a href="/handleDeleteProduct/<%= product.id%>"
                       ><button class="admin-btn add_role_btn delete">
                         刪除
                       </button></a
                     >
                   </td>
                 </tr>
-                <% }) %> <% } %>
+                <% }) %> <% }%>
               </tbody>
             </table>
-            <a href="/handleReset"
-              ><button class="admin-btn add_role_btn">重置</button></a
-            >
 
             <div>
-              <h1>新增獎項</h1>
-              <p>
-                預設機率為0
-                <br />
-                新增完之後再從上面的更新獎項區塊設定你要的機率。
-              </p>
+              <h1>新增商品</h1>
+              <p>填完內容按下送出即可</p>
             </div>
             <table class="authority">
               <tbody>
                 <tr>
-                  <th>獎品名</th>
+                  <th>商品名</th>
                   <th>圖片</th>
-                  <th>描述</th>
+                  <th>價格</th>
+                  <th>數量</th>
                 </tr>
                 <form
-                  id="create-prize"
+                  id="create-product"
                   enctype="multipart/form-data"
-                  action="/handleCreatePrize"
+                  action="/handleCreateProduct"
                   method="POST"
                 ></form>
                 <tr>
@@ -162,9 +156,9 @@
                     <input
                       required=""
                       class="input-role"
-                      name="item_name"
+                      name="product_name"
                       type="text"
-                      form="create-prize"
+                      form="create-product"
                     />
                   </td>
                   <td>
@@ -172,8 +166,8 @@
                       <input
                         class="file"
                         type="file"
-                        name="item_image"
-                        form="create-prize"
+                        name="product_image"
+                        form="create-product"
                       />
                       <i class="fa fa-photo" aria-hidden="true"></i> 上傳圖片
                     </label>
@@ -182,11 +176,23 @@
                     <input
                       required=""
                       class="input-role"
-                      name="item_desc"
+                      name="product_price"
                       type="text"
-                      form="create-prize"
+                      form="create-product"
                     />
-                    <button class="admin-btn add_role_btn" form="create-prize">
+                  </td>
+                  <td>
+                    <input
+                      required=""
+                      class="input-role"
+                      name="product_quantity"
+                      type="text"
+                      form="create-product"
+                    />
+                    <button
+                      class="admin-btn add_role_btn"
+                      form="create-product"
+                    >
                       送出
                     </button>
                   </td>

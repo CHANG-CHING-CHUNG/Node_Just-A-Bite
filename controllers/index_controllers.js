@@ -1,5 +1,7 @@
 const db =require('../models');
 const Prize = db.Prize;
+const Item = db.Item;
+const Faq = db.Faq;
 
 function drawLottery(probaArr)  {
   const proba = probaArr;
@@ -54,8 +56,12 @@ const index_controller = {
     res.render('index');
   },
 
-  faq: (req, res) => {
-    res.render('faq');
+  faq: async (req, res) => {
+    const faqs = await Faq.findAll({
+      order:[['faq_order', 'ASC']]
+    });
+
+    res.render('faq', { faqs:faqs });
   },
 
   game: async (req, res) => {
@@ -69,6 +75,11 @@ const index_controller = {
     let prizes = await Prize.findAll({
       order:[['probability','ASC']]
     });
+    console.log(prizes)
+    if (!prizes.length) {
+      req.flash('errorMessage', '資料庫獎項為空');
+      return res.redirect('/game');
+    }
     const probaOfPrizes = prizes.map(prize => {
       if(prize.probability === 0) {
         return prize.probability = 1;
@@ -79,6 +90,12 @@ const index_controller = {
     const itemNum = drawLottery(probaOfPrizes);
 
     res.render('lottery', { prize: prizes[itemNum - 1]});
+  },
+
+  menu: async (req, res) => {
+    const products = await Item.findAll();
+
+    res.render('menu', { products:products });
   }
 };
 
