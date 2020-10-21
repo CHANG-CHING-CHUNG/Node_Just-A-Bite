@@ -9,6 +9,7 @@
     />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/cart.css" />
     <title>咬一口廚房</title>
   </head>
   <body>
@@ -32,27 +33,42 @@
         </div>
         <div class="list-body">
           <table class="list-items">
-            <tr>
-              <th>#</th>
-              <th>商品</th>
-              <th>價格</th>
-              <th>數量</th>
-              <th>小計</th>
+            <tr class="list-header">
+              <th class="list-header-num">#</th>
+              <th class="list-header-item">商品</th>
+              <th class="list-header-price">價格</th>
+              <th class="list-header-quantity">數量</th>
+              <th class="list-header-subtotal">小計</th>
             </tr>
-            <tr>
-              <td>
-                1
+            <tr class="list-item">
+              <td class="item-num">
+                <span>1</span>
                 <button>刪除</button>
-                <div>圖片</div>
+                <img src="/item_images/六彩雙茄起司沙拉.png" alt="">
               </td>
-              <td>輕盈高麗卷湘南</td>
-              <td>$280</td>
-              <td>
+              <td class="item-name">輕盈高麗卷湘南</td>
+              <td class="item-price">$280</td>
+              <td class="item-quantity">
                 <input type="text" class="quantity" value="1" />
               </td>
-              <td>$280</td>
+              <td class="item-subtotal">$280</td>
             </tr>
           </table>
+          <div class="total-amount-box">
+            <div class="subtotal">
+              <div >
+                <div class="bottom-line-second"></div>
+                <p class="subtotal-amount">小計：$920</p>
+                <div class="bottom-line-second"></div>
+              </div>
+            </div>
+            <div class="total">
+              <div class="shipping-fee">
+                <span class="special">購物滿1000免運！</span> 運費：$99
+              </div>
+              <div class="total-amount">總計：$1019</div>
+            </div>
+          </div>
         </div>
       </section>
 

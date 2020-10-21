@@ -1,0 +1,128 @@
+.bottom-line-second {
+  background-color: #e6e6e6;
+  height: 1px;
+}
+
+.shpping-list-box {
+  padding-left: 95px;
+  padding-right: 95px;
+  padding-top: 60px;
+}
+
+.list-title h1 {
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.bottom-line {
+  height: 1px;
+  background-color: #bcbcbc;
+  margin-bottom: 42px;
+}
+
+.list-items {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.list-header {
+  background-color: #efefef;
+
+}
+
+.list-header th {
+  text-align: left;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+tr.list-item {
+  background-color: #f8f8f8;
+}
+
+.list-header-num {
+  width: 20%;
+}
+.list-header-item{
+  width: 40%;
+}
+
+.list-header-price {
+  width: 20%;
+}
+
+.list-header-quantity {
+  width: 10%;
+}
+
+.list-header-subtotal {
+  width: 10%;
+}
+
+.item-num {
+  display: flex;
+  padding-left: 40px;
+  padding-top: 30px;
+  padding-bottom: 55px;
+  padding-right: 110px;
+  align-items: center;
+}
+
+.item-num span {
+  margin-right: 70px;
+}
+
+.item-num button {
+  width: 42px;
+  height: 23px;
+  border-radius: 3px;
+  border: solid 1px #888888;
+  background-color: #efefef;
+  margin-right: 110px;
+}
+
+.item-num img {
+  height: 80px;
+  width: 80px;
+  margin-right: 101px;
+}
+
+
+
+.item-quantity input {
+  height: 30px;
+  width: 55px;
+  padding:0 15px
+}
+
+
+
+.list-header th:first-child {
+  padding-left: 40px;
+}
+
+.total-amount-box {
+  background-color: #f8f8f8;
+}
+
+.subtotal-amount{
+  text-align: right;
+  margin-right: 50px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+
+.total {
+  padding: 23px 50px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.shipping-fee {
+  margin-bottom: 45px;
+}
+
+.special {
+  color: #f47676;
+}
