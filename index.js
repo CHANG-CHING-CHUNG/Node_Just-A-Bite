@@ -50,6 +50,7 @@ app.get('/faq', index_controller.faq);
 app.get('/game', index_controller.game);
 app.get('/lottery', index_controller.lottery);
 app.get('/menu',index_controller.menu);
+app.get('/cart', index_controller.cart);;
 
 app.get('/admin', admin_controller.admin);
 app.get('/login', admin_controller.login);

@@ -96,6 +96,9 @@ const index_controller = {
     const products = await Item.findAll();
 
     res.render('menu', { products:products });
+  },
+  cart: async (req, res) => {
+    res.render('cart');
   }
 };
 
