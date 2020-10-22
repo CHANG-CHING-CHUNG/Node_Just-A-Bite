@@ -1,0 +1,141 @@
+
+@media (max-height: 812px) and (max-width: 400px) {
+  .vertical-shpping-list-box {
+    display: block;
+  }
+
+  .shpping-list-box {
+    display: none;
+  }
+  #create-order-form {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .input-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .input-box .buyer_name {
+    text-align: left;
+  }
+}
+@media (max-height: 400px) and (max-width: 812px) {
+  .vertical-shpping-list-box {
+    display: none;
+  }
+
+  .shpping-list-box {
+    display: block;
+  }
+  .item-num span,
+  .item-num button,
+  .item-num img {
+    margin-right: 20px;
+  }
+
+  .item-num {
+    padding-right: 10px;
+  }
+
+  .list-header-price {
+    width: 15%;
+  }
+
+  .list-header-item {
+    width: 25%;
+  }
+  .list-header-quantity {
+    width: 11%;
+  }
+  .list-header-subtotal {
+    width: 15%;
+  }
+  #create-order-form {
+    padding-left: 50px;
+  }
+
+  .input-box input {
+    height: 38px;
+    max-width: 440px;
+    width: 100%;
+    border: solid 1px #e2e2e2;
+    font-size: 18px;
+  }
+
+}
+
+
+@media (max-height: 800px) and (max-width: 450px) {
+  .vertical-shpping-list-box {
+    display: block;
+  }
+
+  .shpping-list-box {
+    display: none;
+  }
+  #create-order-form {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .input-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .input-box .buyer_name {
+    text-align: left;
+  }
+}
+
+@media (max-height: 450px) and (max-width: 800px) {
+  .vertical-shpping-list-box {
+    display: none;
+  }
+
+  .shpping-list-box {
+    display: block;
+  }
+  .item-num span,
+  .item-num button,
+  .item-num img {
+    margin-right: 20px;
+  }
+
+  .item-num {
+    padding-right: 10px;
+  }
+
+  .list-header-price {
+    width: 15%;
+  }
+
+  .list-header-item {
+    width: 25%;
+  }
+  .list-header-quantity {
+    width: 11%;
+  }
+  .list-header-subtotal {
+    width: 15%;
+  }
+  #create-order-form {
+    padding-left: 50px;
+  }
+
+  .input-box input {
+    height: 38px;
+    max-width: 440px;
+    width: 100%;
+    border: solid 1px #e2e2e2;
+    font-size: 18px;
+  }
+
+}
+
+@media (max-height: 570px) and (max-width: 330px) {
+  .vertical-shpping-list-box {
+    padding-left: 70px;
+    padding-right: 64px;
+  }
+}

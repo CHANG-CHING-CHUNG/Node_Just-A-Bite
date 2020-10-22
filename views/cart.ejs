@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/cart.css" />
+    <link rel="stylesheet" href="/css/cart_mobile.css" />
     <title>咬一口廚房</title>
   </head>
   <body>
@@ -51,7 +52,7 @@
               <td class="item-quantity">
                 <input type="text" class="quantity" value="1" />
               </td>
-              <td class="item-subtotal">$280</td>
+              <td class="item-subtotal"><p>$280</p></td>
             </tr>
           </table>
           <div class="total-amount-box">
@@ -72,8 +73,85 @@
         </div>
       </section>
 
+      <section class="vertical-shpping-list-box">
+        <div class="list-title">
+          <h1>購物清單</h1>
+          <div class="bottom-line"></div>
+        </div>
+        <div class="vertical-list-body">
+          <table class="vertical-list-items">
+              <tr>
+                <th class="vertical-list-header-num">#</th>
+                <td class="vertical-item-num">
+                  <img src="/item_images/六彩雙茄起司沙拉.png" alt="">
+                </td>
+              </tr>
+              <tr>
+                <th class="vertical-list-header-item">商品</th>
+                <td class="vertical-item-name">輕盈高麗卷湘南</td>
+              </tr>
+              <tr>
+                <th class="vertical-list-header-price">價格</th>
+                <td class="vertical-item-price">$280</td>
+              </tr>
+              <tr>
+                <th class="vertical-list-header-quantity">數量</th>
+                <td class="vertical-item-quantity">
+                  <input type="text" class="quantity" value="1" />
+                </td>
+              </tr>
+              <tr>
+                <th class="vertical-list-header-subtotal">小計</th>
+                <td class="vertical-item-subtotal">
+                  <div>
+                    <p>
+                      $280
+                    </p>
+                    <button class="vertical-btn-cart" type="submit">刪除</button>
+                  </div>
+                </td>
+              </tr>
+              
+            </table>
+          <div class="total-amount-box">
+            <div class="subtotal">
+              <div >
+                <div class="bottom-line-second"></div>
+                <p class="subtotal-amount">小計：$920</p>
+                <div class="bottom-line-second"></div>
+              </div>
+            </div>
+            <div class="total">
+              <div class="vertical-shipping-fee">
+                <span class="special">購物滿1000免運！</span> 運費：$99
+              </div>
+              <div class="vertical-total-amount">總計：$1019</div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="bill-info-box">
-
+        <div class="list-title">
+          <h1>帳單資訊</h1>
+          <div class="bottom-line"></div>
+        </div>
+        <form id="create-order-form" action="/createOrder" method="post">
+          <div class="input-box">
+            <p class="buyer_name">姓名<span>*</span></p><input name="buyer_name" type="text" />
+          </div>
+          <div class="input-box">
+            <p>聯絡電話<span>*</span></p><input name="buyer_phone" type="text" />
+          </div>
+          <div class="input-box">
+            <p>電子郵件<span>*</span></p><input name="buyer_email" type="text" />
+          </div>
+          <div class="input-box">
+            <p>送餐地點<span>*</span></p> <input name="buyer_address" type="text" />
+          </div>
+          <div class="btn-box">
+            <button type="submit" class="btn-cart">確認送出</button>
+          </div>
+        </form>
       </section>
       <section id="home-e">
         <ul>

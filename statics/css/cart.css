@@ -9,6 +9,12 @@
   padding-top: 60px;
 }
 
+.vertical-shpping-list-box {
+  padding-left: 95px;
+  padding-right: 95px;
+  padding-top: 60px;
+}
+
 .list-title h1 {
   font-size: 24px;
   margin-bottom: 25px;
@@ -125,4 +131,128 @@ tr.list-item {
 
 .special {
   color: #f47676;
+}
+
+.bill-info-box {
+  padding-left: 95px;
+  padding-right: 95px;
+  padding-top: 60px;
+
+  
+}
+
+#create-order-form {
+  padding-left: 115px;
+  padding-right: 15px;
+}
+
+.input-box {
+  display: flex;
+  padding-bottom: 35px;
+  align-items: center;
+
+}
+
+.buyer_name {
+  width: 71px;
+  text-align: right;
+}
+
+
+
+.input-box span {
+  color: red;
+}
+
+.input-box input {
+  height: 38px;
+  max-width: 1476px;
+  width: 100%;
+  border: solid 1px #e2e2e2;
+  font-size: 18px;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.btn-cart {
+  border: solid 1px #3f633c;
+  background-color: #f1fff2;
+  max-width: 184px;
+  width: 100%;
+  height: 46px;
+  color: #3f633c;
+  font-size: 16px;
+  font-family: "Microsoft JhengHei";
+}
+
+.vertical-item-num {
+  width: 80px;
+  height: 80px;
+}
+
+.vertical-list-items {
+  border-spacing: 0;
+}
+
+.vertical-list-items th {
+  background-color: #efefef;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.vertical-list-items td {
+  background-color: #f8f8f8;
+  text-align: center;
+}
+
+.vertical-list-items tr {
+  height: 80px;
+}
+
+.vertical-item-quantity {
+  width: 100%;
+}
+
+.quantity {
+  width: 50px;
+}
+
+.vertical-item-num img {
+  height: 150px;
+  width: 150px;
+}
+
+.vertical-item-subtotal div {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-btn-cart {
+  border: solid 1px #3f633c;
+  background-color: #f1fff2;
+  max-width: 80px;
+  width: 100%;
+  height: 30px;
+  color: #3f633c;
+  font-size: 16px;
+  font-family: "Microsoft JhengHei";
+  margin-left: 40px;
+}
+
+.vertical-shipping-fee span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.vertical-total-amount {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.vertical-shpping-list-box {
+  display: none;
 }
