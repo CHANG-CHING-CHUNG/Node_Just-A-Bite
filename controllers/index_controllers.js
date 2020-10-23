@@ -99,6 +99,9 @@ const index_controller = {
   },
   cart: async (req, res) => {
     res.render('cart');
+  },
+  customerLogin: async (req, res) => {
+    res.render('customerLogin')
   }
 };
 
