@@ -23,7 +23,12 @@
             <li><a href="/menu">我要點餐</a></li>
             <li><a href="#">查詢訂單</a></li>
             <li><a href="/faq">常見問題</a></li>
-            <li><a href="/customerLogin">登入</a></li>
+            <% if(!customerId) { %>
+              <li><a href="/customerLogin">登入</a></li>
+            <% } else { %>
+              <li><a href="/handleCustomerLogout">登出</a></li>
+              <li><a href="/customerInfo">會員資料</a></li>
+            <% }%>
           </ul>
         </nav>
       </header>
@@ -132,27 +137,34 @@
         </div>
       </section>
       <section class="bill-info-box">
+        <% if (currentCustomer.length) { %>
         <div class="list-title">
           <h1>帳單資訊</h1>
           <div class="bottom-line"></div>
         </div>
-        <form id="create-order-form" action="/createOrder" method="post">
-          <div class="input-box">
-            <p class="buyer_name">姓名<span>*</span></p><input name="buyer_name" type="text" />
-          </div>
-          <div class="input-box">
-            <p>聯絡電話<span>*</span></p><input name="buyer_phone" type="text" />
-          </div>
-          <div class="input-box">
-            <p>電子郵件<span>*</span></p><input name="buyer_email" type="text" />
-          </div>
-          <div class="input-box">
-            <p>送餐地點<span>*</span></p> <input name="buyer_address" type="text" />
-          </div>
-          <div class="btn-box">
-            <button type="submit" class="btn-cart">確認送出</button>
-          </div>
-        </form>
+          <form id="create-order-form" action="/createOrder" method="post">
+            <div class="input-box">
+              <p class="buyer_name">姓名<span>*</span></p><input name="buyer_name" type="text" value="<%= currentCustomer[0].nickname  %>" />
+            </div>
+            <div class="input-box">
+              <p>聯絡電話<span>*</span></p><input name="buyer_phone" type="text" />
+            </div>
+            <div class="input-box">
+              <p>電子郵件<span>*</span></p><input name="buyer_email" type="text" value="<%= currentCustomer[0].email  %>" />
+            </div>
+            <div class="input-box">
+              <p>送餐地點<span>*</span></p> <input name="buyer_address" type="text" />
+            </div>
+            <div class="btn-box">
+              <button type="submit" class="btn-cart">確認送出</button>
+            </div>
+          </form>
+        <% } else { %>
+          <h1 class="cart-alert">請先登入後結帳</h1>
+          <a href="/customerLogin">
+            <button type="submit" class="btn-cart">登入</button>
+          </a>
+        <% } %>
       </section>
       <section id="home-e">
         <ul>

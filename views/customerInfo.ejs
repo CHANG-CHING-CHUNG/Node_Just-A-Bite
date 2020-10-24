@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/customer.css">
+    <link rel="stylesheet" href="/css/cart_icon.css" />
     <title>咬一口廚房</title>
   </head>
   <body>
@@ -21,30 +22,40 @@
             <nav id="main-nav">
               <h1><a href="/" class="logo">Just A Bite!</a></h1>
                 <ul>
-                  <li ><a href="/game">抽個大獎</a></li>
+                  <li><a href="/game">抽個大獎</a></li>
                   <li><a href="/menu">我要點餐</a></li>
                   <li><a href="#">查詢訂單</a></li>
                   <li><a href="/faq">常見問題</a></li>
-                  <li><a  class="active" href="/customerLogin">登入</a></li>
+                  <li><a href="/handleCustomerLogout">登出</a></li>
+                  <li><a class="active" href="/customerInfo">會員資料</a></li>
                 </ul>
             </nav>
           </header>
     
           <section class="login">
-            <form method="POST" action="/handleCustomerLogin">
+            <form method="POST" action="/handleUpdateCustomerInfo">
               <% if (errorMessage.length) { %>
               <div class="message error validation_errors">
                 <p><%= errorMessage %></p>
               </div>
               <% }%>
-              <label for="uname">使用者帳號</label>
-              <input type="text" id="uname" name="username" placeholder="你的帳號..">
+              <% if (successMessage.length) { %>
+              <div class="message validation_errors">
+                <p><%= successMessage %></p>
+              </div>
+              <% }%>
+              <% if(currentCustomer.length) { %>
+              <label for="realname">姓名</label>
+              <input  type="text" id="realname" name="nickname" placeholder="你的姓名.." value="<%= currentCustomer[0].nickname %>">
           
               <label for="psword">密碼</label>
-              <input type="password" id="psword" name="password" placeholder="你的密碼..">
-          
-              <input type="submit" value="登入">
-              <a class="signup" href="/signup">註冊</a>
+              <input  type="password" id="psword" name="password" placeholder="你的密碼..">
+
+              <label for="email">電子信箱</label>
+              <input  type="email" id="email" name="email" placeholder="你的電子信箱.." value="<%= currentCustomer[0].email %>">
+              
+              <% } %>
+              <input type="submit" value="更新">
               
             </form>
           </section>
@@ -72,7 +83,7 @@
                 </div>
               </div>
             </section>
-        
+            <%- include('./includes/cart_icon.ejs') %>
             <footer>
               Copyright © 2020 Just A Bite All Rights Reserved.
               咬一口股份有限公司版權所有

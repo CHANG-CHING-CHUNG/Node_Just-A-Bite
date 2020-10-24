@@ -9,6 +9,7 @@
     />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/mobile.css" />
+    <link rel="stylesheet" href="/css/cart_icon.css" />
     <title>常見問題ㄉ｜咬一口廚房</title>
   </head>
   <body>
@@ -21,7 +22,12 @@
             <li><a href="/menu">我要點餐</a></li>
             <li><a href="#">查詢訂單</a></li>
             <li><a class="active" href="/faq">常見問題</a></li>
-            <li><a href="/customerLogin">登入</a></li>
+            <% if(!customerId) { %>
+              <li><a href="/customerLogin">登入</a></li>
+            <% } else { %>
+              <li><a href="/handleCustomerLogout">登出</a></li>
+              <li><a href="/customerInfo">會員資料</a></li>
+            <% }%>
           </ul>
         </nav>
       </header>
@@ -73,7 +79,7 @@
           </div>
         </div>
       </section>
-
+      <%- include('./includes/cart_icon.ejs') %>
       <footer>
         Copyright © 2020 Just A Bite All Rights Reserved.
         咬一口股份有限公司版權所有

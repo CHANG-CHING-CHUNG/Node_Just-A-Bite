@@ -1,0 +1,36 @@
+.cart-icon-box {
+  position: fixed;
+  right: 50px;
+  bottom: 200px;
+  width: 82px;
+  height: 82px;
+  box-shadow: -1.4px -1.4px 5.9px 0.1px #efefef;
+  background-color: #30762f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.cart-item-count {
+  width: 30px;
+  height: 30px;
+  background-color: #ff667c;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: "Microsoft JhengHei";
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  padding-top: 4px;
+}
+
+.cart-icon {
+  width: 50px;
+  height: 41px;
+  object-fit: contain;
+}

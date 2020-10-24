@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const formidableMiddleware = require('express-formidable');
 const session = require('express-session');
 const flash = require('connect-flash');
+
 const port = process.env.PORT || 3000;
 
 const index_controller = require('./controllers/index_controllers');
@@ -24,7 +25,10 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.userId = req.session.userId;
   res.locals.username = req.session.username;
+  res.locals.customerId = req.session.customerId;
+  res.locals.customerUsername = req.session.customerUsername
   res.locals.errorMessage = req.flash('errorMessage');
+  res.locals.successMessage = req.flash('successMessage');
   next();
 });
 app.use('/css', express.static(__dirname + '/statics/css'));
@@ -52,6 +56,12 @@ app.get('/lottery', index_controller.lottery);
 app.get('/menu',index_controller.menu);
 app.get('/cart', index_controller.cart);;
 app.get('/customerLogin', index_controller.customerLogin);
+app.post('/handleCustomerLogin', index_controller.handleCustomerLogin,redirectBack);
+app.get('/handleCustomerLogout', index_controller.handleCustomerLogout);
+app.get('/signup', index_controller.signup);
+app.post('/handleCustomerRegister', index_controller.handleCustomerRegister, redirectBack);
+app.get('/customerInfo', index_controller.customerInfo, redirectBack);
+app.post('/handleUpdateCustomerInfo', index_controller.handleUpdateCustomerInfo, redirectBack);
 
 app.get('/admin', admin_controller.admin);
 app.get('/login', admin_controller.login);

@@ -256,3 +256,8 @@ tr.list-item {
 .vertical-shpping-list-box {
   display: none;
 }
+
+.cart-alert {
+  text-align: center;
+  padding-bottom: 3rem;
+}
