@@ -27,6 +27,16 @@
   text-align: center;
   color: #fff;
   padding-top: 4px;
+  display: none;
+  transition: all 0.2s;
+}
+
+.bouncing {
+  top: -10px;
+}
+
+.display {
+  display: block;
 }
 
 .cart-icon {
