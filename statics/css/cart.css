@@ -187,6 +187,7 @@ tr.list-item {
   color: #3f633c;
   font-size: 16px;
   font-family: "Microsoft JhengHei";
+  cursor: pointer;
 }
 
 .vertical-item-num {
@@ -260,4 +261,11 @@ tr.list-item {
 .cart-alert {
   text-align: center;
   padding-bottom: 3rem;
+}
+
+.bill-info-box .btn-link {
+  margin: 0 auto;
+  display: block;
+  width: 184px;
+  cursor: pointer;
 }
