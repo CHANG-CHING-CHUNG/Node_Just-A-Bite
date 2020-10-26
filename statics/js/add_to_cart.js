@@ -37,11 +37,13 @@ function displayNumInIcon() {
 function getItemObj(event) {
   const itemId = parseInt($(event.target).parent().children('.item-id').val());
   const itemName = $(event.target).parent().children('.item-name').val();
+  const itemImage = $(event.target).parent().children('.item-image').val();
   const itemPrice = parseInt($(event.target).parent().children('.item-price').val());
 
   return {
     id:itemId,
     item_name:itemName,
+    item_image:itemImage,
     item_price:itemPrice,
     item_quantity:1
   }

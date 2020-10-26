@@ -29,6 +29,7 @@ const cart_controller = {
       item.item_quantity = clientItems[i].item_quantity;
       return item;
     })
+    console.log('clientItems')
     res.json(JSON.stringify(filterServerItems))
   }
 };

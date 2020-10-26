@@ -4,7 +4,7 @@ let receivedItems;
 function getItemsFromCookie() {
   return (JSON.parse(docCookies.getItem('cartList')));
 }
-console.log(items)
+
 function displayItems(receivedItem, number) {
   const tr = document.createElement("tr");
   tr.classList.add('list-item');
@@ -16,7 +16,7 @@ function displayItems(receivedItem, number) {
                     <td class="item-name">${receivedItem.item_name}</td>
                     <td class="item-price">$${receivedItem.item_price}</td>
                     <td class="item-quantity">
-                      <input  required type="text" class="quantity" value="${receivedItem.item_quantity}" />
+                      <input min="0"  required type="number" class="quantity" value="${receivedItem.item_quantity}" />
                     </td>
                     <td class="item-subtotal"><p>$${receivedItem.item_price * receivedItem.item_quantity}</p>
                   </td>`;
@@ -40,6 +40,7 @@ function updateCartItems(receivedItems) {
     cartList.push({
       id: receivedItem.id,
       item_name: receivedItem.item_name,
+      item_image:receivedItem.item_image,
       item_price: receivedItem.item_price,
       item_quantity: receivedItem.item_quantity
     });
@@ -47,26 +48,19 @@ function updateCartItems(receivedItems) {
   return cartList;
 }
 
-function setCookie(itemObj) {
-  let cartList;
-  if(docCookies.getItem('cartList')) {
-    cartList = JSON.parse(docCookies.getItem('cartList'));
-  } else {
-    cartList = [];
-  }
-  console.log(cartList)
-  if( cartList.length && checkItemInCart(itemObj,cartList)) {
-    cartList = updateItemQuantity(itemObj,cartList);
-  } else {
-    cartList.push(itemObj);
-  }
-  docCookies.setItem('cartList',JSON.stringify(cartList));
+function setCookie(updatedCartList) {
+  docCookies.setItem('cartList',JSON.stringify(updatedCartList));
 }
 
-function checkInputChanges() {
+
+function checkInputChanges(sentItems) {
   $('.quantity').each((i, element) => {
     $(element).on('input', () => {
-      console.log($(element).val())
+      console.log(i)
+      $(element).val( Math.abs(parseInt($(element).val())) )
+      const cartList = updateCartItems(sentItems);
+      cartList[i].item_quantity = parseInt($(element).val());
+      setCookie(cartList);
     })
   })
 }
@@ -82,9 +76,9 @@ $.ajax({
     receivedItems.forEach((item,number) => {
       $('.list-items').append(displayItems(item,number));
     });
-    console.log(receivedItems)
+    setCookie(receivedItems);
     checkSoldout();
-    checkInputChanges();
-    updateCartItems(receivedItems);
+    checkInputChanges(getItemsFromCookie())
   }
 });
+
