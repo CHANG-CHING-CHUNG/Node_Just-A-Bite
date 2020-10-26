@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 
 const index_controller = require('./controllers/index_controllers');
 const admin_controller = require('./controllers/admin_controllers');
+const cart_controller = require('./controllers/cart_controller');
 
 
 
@@ -18,7 +19,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(flash());
@@ -83,6 +84,8 @@ app.get('/admin_faq', admin_controller.adminFaq);
 app.post('/handleUpdateFaq',admin_controller.handleUpdateFaq,redirectBack);
 app.get('/handleDeleteFaq/:faq_id', admin_controller.handleDeleteFaq,redirectBack);
 app.post('/handleCreateFaq/', admin_controller.handleCreateFaq,redirectBack);
+
+app.post('/checkItems', cart_controller.checkItems);
 
 
 

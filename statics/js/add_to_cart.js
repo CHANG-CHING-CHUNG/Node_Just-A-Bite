@@ -12,7 +12,7 @@ function iconBounce() {
 }
 
 function initIcon() {
-  const cartList = JSON.parse(localStorage.getItem('cartList'));
+  const cartList = JSON.parse(docCookies.getItem('cartList'));
   if( cartList ) {
     if(!$('.cart-item-count').hasClass('display')) {
       $('.cart-item-count').addClass('display');
@@ -24,7 +24,7 @@ function initIcon() {
 
 
 function displayNumInIcon() {
-  const cartList = JSON.parse(localStorage.getItem('cartList'));
+  const cartList = JSON.parse(docCookies.getItem('cartList'));
   let sum = 0;
   if( cartList ) {
     sum = cartList.map(item => item.item_quantity).reduce((acc, curr) => {
@@ -64,10 +64,10 @@ function updateItemQuantity(itemObj,cartList) {
   return cartList;
 }
 
-function setLocalStorage(itemObj) {
+function setCookie(itemObj) {
   let cartList;
-  if(localStorage.getItem('cartList')) {
-    cartList = JSON.parse(localStorage.getItem('cartList'));
+  if(docCookies.getItem('cartList')) {
+    cartList = JSON.parse(docCookies.getItem('cartList'));
   } else {
     cartList = [];
   }
@@ -77,13 +77,13 @@ function setLocalStorage(itemObj) {
   } else {
     cartList.push(itemObj);
   }
-  localStorage.setItem('cartList',JSON.stringify(cartList));
+  docCookies.setItem('cartList',JSON.stringify(cartList));
 }
 
 function addItemToCart(event) {
   if ($(event.target).is('.order-add-cart')) {
     const item = getItemObj(event);
-    setLocalStorage(item)
+    setCookie(item)
     displayNumInIcon()
     console.log(item)
   }
