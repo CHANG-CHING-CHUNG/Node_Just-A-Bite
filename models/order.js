@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     subtotal: DataTypes.INTEGER,
     total: DataTypes.INTEGER,
     shipping_address: DataTypes.TEXT,
+    phone: DataTypes.STRING,
     status: DataTypes.ENUM('paid','shipping','shipped')
   }, {
     sequelize,

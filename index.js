@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 const index_controller = require('./controllers/index_controllers');
 const admin_controller = require('./controllers/admin_controllers');
 const cart_controller = require('./controllers/cart_controller');
+const checkout_controller = require('./controllers/checkout_controller');
 
 
 
@@ -86,6 +87,7 @@ app.get('/handleDeleteFaq/:faq_id', admin_controller.handleDeleteFaq,redirectBac
 app.post('/handleCreateFaq/', admin_controller.handleCreateFaq,redirectBack);
 
 app.post('/checkItems', cart_controller.checkItems);
+app.post('/createOrder', checkout_controller.createOrder);
 
 
 

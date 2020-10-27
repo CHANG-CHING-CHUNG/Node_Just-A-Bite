@@ -27,6 +27,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
+      phone: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       status: {
         allowNull: false,
         type: Sequelize.ENUM('paid','shipping','shipped'),

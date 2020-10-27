@@ -66,15 +66,15 @@
             <div class="subtotal">
               <div >
                 <div class="bottom-line-second"></div>
-                <p class="subtotal-amount">小計：$920</p>
+                <p class="subtotal-amount">小計：$<span class="subtotal-sum"></span></p>
                 <div class="bottom-line-second"></div>
               </div>
             </div>
             <div class="total">
               <div class="shipping-fee">
-                <span class="special">購物滿1000免運！</span> 運費：$99
+                <span class="special">購物滿1000免運！</span> 運費：$<span class="fee"></span>
               </div>
-              <div class="total-amount">總計：$1019</div>
+              <div class="total-amount">總計：$<span class="total-sum"></span></div>
             </div>
           </div>
         </div>
@@ -144,26 +144,27 @@
           <div class="bottom-line"></div>
         </div>
           <form id="create-order-form" action="/createOrder" method="post">
+            <input type="hidden" class="buyer_id" value="<%= currentCustomer[0].id %>">
             <div class="input-box">
-              <p class="buyer_name">姓名<span>*</span></p><input name="buyer_name" type="text" value="<%= currentCustomer[0].nickname  %>" />
+              <p class="buyer_name-box" >姓名<span>*</span></p><input class="buyer_name" name="buyer_name" type="text" value="<%= currentCustomer[0].nickname  %>" />
             </div>
             <div class="input-box">
-              <p>聯絡電話<span>*</span></p><input name="buyer_phone" type="text" />
+              <p>聯絡電話<span>*</span></p><input class="buyer_phone" name="buyer_phone" type="text" />
             </div>
             <div class="input-box">
-              <p>電子郵件<span>*</span></p><input name="buyer_email" type="text" value="<%= currentCustomer[0].email  %>" />
+              <p>電子郵件<span>*</span></p><input class="buyer_email" name="buyer_email" type="text" value="<%= currentCustomer[0].email  %>" />
             </div>
             <div class="input-box">
-              <p>送餐地點<span>*</span></p> <input name="buyer_address" type="text" />
+              <p>送餐地點<span>*</span></p> <input class="buyer_address" name="buyer_address" type="text" />
             </div>
             <div class="btn-box">
-              <button type="submit" class="btn-cart">確認送出</button>
+              <button type="submit" class="btn-cart cart-send">確認送出</button>
             </div>
           </form>
         <% } else { %>
           <h1 class="cart-alert">請先登入後結帳</h1>
           <a class="btn-link" href="/customerLogin">
-            <button type="submit" class="btn-cart">登入</button>
+            <button type="submit" class="btn-cart ">登入</button>
           </a>
         <% } %>
       </section>

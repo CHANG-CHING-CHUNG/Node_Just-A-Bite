@@ -19,7 +19,10 @@ const cart_controller = {
     }
 
     const filterServerItems = serverItems.map((item, i) => {
-      if ( clientItems[i].item_quantity < 0 ) {
+      if( item.item_quantity === 0) {
+        return item;
+      }
+      if ( clientItems[i].item_quantity <= 0 ) {
         item.item_quantity = 1;
         return item;
       }
@@ -29,7 +32,6 @@ const cart_controller = {
       item.item_quantity = clientItems[i].item_quantity;
       return item;
     })
-    console.log('clientItems')
     res.json(JSON.stringify(filterServerItems))
   }
 };
