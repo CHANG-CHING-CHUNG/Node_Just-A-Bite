@@ -252,7 +252,6 @@ const index_controller = {
         CustomerId:customerId
       }
     })
-    console.log(customerOrder)
     res.render('checkOrders', {customerOrder});
   }
 };

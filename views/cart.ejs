@@ -36,6 +36,15 @@
       </header>
 
       <section class="shpping-list-box">
+          <% if (errorMessage.length) { %>
+          <div class="message error validation_errors">
+            <p><%= errorMessage %></p>
+          </div>
+          <% } else if(successMessage.length) { %>
+            <div class="message validation_errors">
+              <p><%= successMessage %></p>
+            </div>
+          <% } %>
         <div class="list-title">
           <h1>購物清單</h1>
           <div class="bottom-line"></div>

@@ -89,6 +89,7 @@ app.post('/handleCreateFaq/', admin_controller.handleCreateFaq,redirectBack);
 
 app.post('/checkItems', cart_controller.checkItems);
 app.post('/createOrder', checkout_controller.createOrder);
+app.post('/checkPayment', checkout_controller.checkPayment);
 
 
 

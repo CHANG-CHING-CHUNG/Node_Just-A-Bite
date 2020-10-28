@@ -36,11 +36,11 @@ function ecpay(orderNum, items, order,baseURL) {
     TotalAmount: totalAmount,
     TradeDesc: '測試交易描述',
     ItemName: itemNames,
-    ReturnURL: baseURL,
+    ReturnURL: baseURL + '/checkPayment',
     EncryptType:'1',
-    ClientBackURL: 'http://just-a-bite.mentor4th-john.tw',
+    ClientBackURL: baseURL,
+    OrderResultURL: baseURL + '/checkPayment',
   };
-
   let create = new ecpay_payment();
   let html = create.payment_client.aio_check_out_all(parameters = base_param);
   return html;
@@ -185,13 +185,33 @@ const checkout_controller = {
     const isTransationOk = await orderTransaction(results.filterServerItems);
     if( isTransationOk ) {
       const newOrder = await createOrderIndatabase(customerId, buyerInfo, items)
-      const html = await ecpay(newOrder.order_number, items, newOrder, 'http://just-a-bite.mentor4th-john.tw/checkPayment');
+      const html = await ecpay(newOrder.order_number, items, newOrder, 'http://127.0.0.1:3000');
       return res.send({results, html})
     }
   },
 
   checkPayment: async (req, res) => {
-    console.log(req.body);
+    // const { customerId } = req.session;
+    // if (!customerId) {
+    //   return res.send('Not valid');
+    // }
+    const { RtnCode, RtnMsg, MerchantTradeNo } = req.body;
+    console.log(req.body)
+    if ( !parseInt(RtnCode) ) {
+      req.flash('errorMessage', '付款失敗');
+      return res.redirect('/cart');
+    }
+    await Order.update(
+      {
+        status: 'paid'
+      },
+      {
+      where: {
+        order_number:MerchantTradeNo
+      }
+    });
+    req.flash('successMessage', '付款成功');
+    return res.redirect('/checkOrders');
   }
 };
 
