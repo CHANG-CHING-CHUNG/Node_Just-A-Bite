@@ -17,11 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   };
   Order.init({
     CustomerId: DataTypes.INTEGER,
+    order_number: DataTypes.STRING,
     subtotal: DataTypes.INTEGER,
     total: DataTypes.INTEGER,
     shipping_address: DataTypes.TEXT,
     phone: DataTypes.STRING,
-    status: DataTypes.ENUM('paid','shipping','shipped')
+    status: DataTypes.ENUM('unpaid','paid','shipping','shipped')
   }, {
     sequelize,
     modelName: 'Order',

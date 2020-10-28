@@ -98,7 +98,7 @@ function checkInputChanges(sentItems) {
   $('.quantity').each((i, element) => {
     $(element).on('input', () => {
       $(element).val( Math.abs(parseInt($(element).val())) )
-      const cartList = updateCartItems(sentItems);
+      const cartList = getItemsFromCookie();
       cartList[i].item_quantity = parseInt($(element).val());
       setCookie(cartList);
       updateItemSubtotal();
@@ -135,12 +135,29 @@ function deleteItem(itemId) {
   }
 }
 
+function isEmpty(buyerInfo) {
+  let empty = false;
+
+  if (
+    !buyerInfo.buyerId ||
+    !buyerInfo.buyerName ||
+    !buyerInfo.buyerPhone ||
+    !buyerInfo.buyerEmail ||
+    !buyerInfo.buyerAddress
+  ) {
+    empty = true
+  }
+  return empty
+}
+
 function createOrder() {
   const buyerId = parseInt($('.buyer_id').val());
   const buyerName = $('.buyer_name').val();
   const buyerPhone = $('.buyer_phone').val();
   const buyerEmail = $('.buyer_email').val();
   const buyerAddress = $('.buyer_address').val();
+  const subtotal = parseInt($('.subtotal-sum').text());
+  const total = parseInt($('.total-sum').text());
   const order = {
     items: getItemsFromCookie(),
     buyerInfo: {
@@ -148,15 +165,69 @@ function createOrder() {
       buyerName,
       buyerPhone,
       buyerEmail,
-      buyerAddress
+      buyerAddress,
+      subtotal,
+      total
     }
   }
   return order;
 }
 
-$('.cart-send').click(function (e) { 
+function showErrorMessage(className,message) {
+  const div = document.createElement('div');
+  div.classList.add('message', 'error', 'validation_errors');
+  const template = `<p>${message}</p>`;
+  div.innerHTML = template;
+  $(className).append(div);
+}
+
+async function sendOrderAjax(orderObj) {
+  const result = await $.ajax({
+    url: '/createOrder',
+    type: 'POST',
+    data: orderObj
+  });
+  return result;
+
+}
+
+function updateCurrentCart(receivedItems) {
+  $('.quantity').each((i, element) => {
+    $(element).val( Math.abs(parseInt(receivedItems[i].item_quantity)) )
+    receivedItems[i].item_quantity = parseInt(receivedItems[i].item_quantity);
+    setCookie(receivedItems);
+    updateItemSubtotal();
+    updateSubtotal(sumTheAmount());
+    checkShippingFee(sumTheAmount());
+    displayTotal()
+  })
+}
+
+function removeErrorMessage() {
+  if($('.error')) {
+    $('.error').remove();
+  }
+}
+
+function DirectToPaymentPage(html) {
+  $('.btn-box').append(html);
+}
+
+$('.cart-send').click(async function (e) { 
   e.preventDefault();
   const order = createOrder();
+  if(isEmpty(order.buyerInfo)) {
+    return showErrorMessage('bill-info-box .list-title','必填欄位不得為空!');
+  }
+  const { results, html} = await sendOrderAjax(order);
+  console.log(results)
+  if( !results.valid) {
+    removeErrorMessage();
+    updateCurrentCart(results.filterServerItems);
+    showErrorMessage('.shpping-list-box .list-title', '超過可售數量')
+  }
+  DirectToPaymentPage(html);
+  console.log('ok')
   
 });
 

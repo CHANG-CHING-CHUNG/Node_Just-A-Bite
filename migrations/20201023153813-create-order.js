@@ -15,6 +15,10 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
+      order_number: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       subtotal: {
         allowNull: false,
         type: Sequelize.INTEGER
@@ -33,8 +37,8 @@ module.exports = {
       },
       status: {
         allowNull: false,
-        type: Sequelize.ENUM('paid','shipping','shipped'),
-        defaultValue: 'paid'
+        type: Sequelize.ENUM('unpaid','paid','shipping','shipped'),
+        defaultValue: 'unpaid'
       },
       createdAt: {
         allowNull: false,

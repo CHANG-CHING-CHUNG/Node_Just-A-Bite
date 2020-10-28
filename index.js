@@ -64,6 +64,7 @@ app.get('/signup', index_controller.signup);
 app.post('/handleCustomerRegister', index_controller.handleCustomerRegister, redirectBack);
 app.get('/customerInfo', index_controller.customerInfo, redirectBack);
 app.post('/handleUpdateCustomerInfo', index_controller.handleUpdateCustomerInfo, redirectBack);
+app.get('/checkOrders', index_controller.checkOrders);
 
 app.get('/admin', admin_controller.admin);
 app.get('/login', admin_controller.login);

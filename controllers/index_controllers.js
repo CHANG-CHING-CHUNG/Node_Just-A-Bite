@@ -1,9 +1,10 @@
 const db =require('../models');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const bcrypt = require('bcryptjs');
+const saltRounds = bcrypt.genSaltSync(10);
 const Prize = db.Prize;
 const Item = db.Item;
 const Faq = db.Faq;
+const Order = db.Order;
 const Customer = db.Customer;
 
 function drawLottery(probaArr)  {
@@ -177,18 +178,19 @@ const index_controller = {
     });
 
     if (!customerEmail.length || !customerUsername.length) {
-      bcrypt.hash(password,saltRounds).then((hash) => {
-        Customer.create({
-          username,
-          nickname,
-          password:hash,
-          email
-        }).then(customer => {
-          req.session.customerId = customer.id;
-          req.session.customerUsername = customer.username;
-          res.redirect('/');
-        })
-      })
+
+      const hash = bcrypt.hashSync(password, saltRounds);
+
+      const customer =   await Customer.create({
+        username,
+        nickname,
+        password:hash,
+        email
+      });
+      req.session.customerId = customer.id;
+      req.session.customerUsername = customer.username;
+      res.redirect('/');
+
     } else if(customerEmail.length) {
       req.flash('errorMessage', '電子信箱已被人註冊');
       return next();
@@ -230,15 +232,28 @@ const index_controller = {
       await currentCustomer[0].save();
     }
     if (password) {
-      bcrypt.hash(password,saltRounds).then(async (hash) => {
-        currentCustomer[0].password = hash;
-        await currentCustomer[0].save();
-        req.flash('successMessage', '更新成功');
-        return next();
-      })
+      const hash = bcrypt.hashSync(password, saltRounds);
+      currentCustomer[0].password = hash;
+      await currentCustomer[0].save();
+      req.flash('successMessage', '更新成功');
+      return next();
     }
     req.flash('successMessage', '更新成功');
     return next()
+  },
+  checkOrders: async (req, res, next) => {
+    const { customerId } = req.session;
+    if (!customerId) {
+      return res.redirect('/');
+    }
+
+    const customerOrder = await Order.findAll({
+      where: {
+        CustomerId:customerId
+      }
+    })
+    console.log(customerOrder)
+    res.render('checkOrders', {customerOrder});
   }
 };
 
