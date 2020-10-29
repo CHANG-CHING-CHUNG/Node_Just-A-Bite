@@ -53,7 +53,12 @@
               <td><%= order.total %></td>
               <td><%= order.shipping_address %></td>
               <td><%= order.phone %></td>
-              <td><%= order.status %></td>
+              <td>
+                <%= order.status %>
+                <% if(order.status === 'unpaid') { %>
+                  <button class="btn-paid">付款</button>
+                <% } %>
+              </td>
               <td><%= order.updatedAt %></td>
             </tr>
             <% }) %>
@@ -86,5 +91,6 @@
     </div>
     <script src="/js/cookie.js"></script>
     <script src="/js/cart_icon.js"></script>
+    <script src="/js/payment.js"></script>
   </body>
 </html>

@@ -39,8 +39,9 @@ function ecpay(orderNum, items, order,baseURL) {
     ReturnURL: baseURL + '/checkPayment',
     EncryptType:'1',
     ClientBackURL: baseURL,
-    OrderResultURL: baseURL + '/checkPayment',
+    // OrderResultURL: baseURL + '/checkPayment',
   };
+  console.log(base_param)
   let create = new ecpay_payment();
   let html = create.payment_client.aio_check_out_all(parameters = base_param);
   return html;
@@ -185,21 +186,22 @@ const checkout_controller = {
     const isTransationOk = await orderTransaction(results.filterServerItems);
     if( isTransationOk ) {
       const newOrder = await createOrderIndatabase(customerId, buyerInfo, items)
-      const html = await ecpay(newOrder.order_number, items, newOrder, 'http://127.0.0.1:3000');
+      const html = await ecpay(newOrder.order_number, items, newOrder, 'https://a3857b3232b9.ngrok.io');
       return res.send({results, html})
     }
   },
 
+  checkout: async (req, res) => {
+    const { orderNumber } = req.body;
+    // const html = await ecpay(newOrder.order_number, items, newOrder, 'https://a3857b3232b9.ngrok.io');
+    // return res.send({results, html})
+  },
+
   checkPayment: async (req, res) => {
-    // const { customerId } = req.session;
-    // if (!customerId) {
-    //   return res.send('Not valid');
-    // }
     const { RtnCode, RtnMsg, MerchantTradeNo } = req.body;
-    console.log(req.body)
     if ( !parseInt(RtnCode) ) {
       req.flash('errorMessage', '付款失敗');
-      return res.redirect('/cart');
+      return 
     }
     await Order.update(
       {
@@ -211,8 +213,10 @@ const checkout_controller = {
       }
     });
     req.flash('successMessage', '付款成功');
-    return res.redirect('/checkOrders');
-  }
+    console.log(req.body)
+    return '1|ok'
+  },
+
 };
 
 

@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
+const app2 = express();
 const bodyParser = require('body-parser');
 const formidableMiddleware = require('express-formidable');
 const session = require('express-session');
 const flash = require('connect-flash');
 
 const port = process.env.PORT || 3000;
+const port2 = process.env.PORT || 443;
 
 const index_controller = require('./controllers/index_controllers');
 const admin_controller = require('./controllers/admin_controllers');
@@ -90,6 +92,8 @@ app.post('/handleCreateFaq/', admin_controller.handleCreateFaq,redirectBack);
 app.post('/checkItems', cart_controller.checkItems);
 app.post('/createOrder', checkout_controller.createOrder);
 app.post('/checkPayment', checkout_controller.checkPayment);
+
+app.post('/checkout', checkout_controller.checkout);
 
 
 
