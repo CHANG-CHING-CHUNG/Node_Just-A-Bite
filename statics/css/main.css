@@ -21,6 +21,8 @@ ul {
 
 img {
   width: 100%;
+  min-width: 0;
+  min-height: 0;
 }
 
 button {
@@ -108,7 +110,7 @@ a.active {
 #header-home .header-content {
   background: url("/imgs/header.jpg") no-repeat center center/cover;
   height: 580px;
-  width: 100%;
+  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,7 +237,7 @@ a.active {
 }
 
 #home-c .comment div {
-  width: 565px;
+  max-width: 565px;
   height: 205px;
   border-radius: 5px;
   box-shadow: -1.4px -1.4px 4px 0 #d8eaef;
