@@ -23,13 +23,10 @@ Date.prototype.Format = function (fmt) { //author: meizz
 
 function ecpay(orderNum, items, order,baseURL) {
   const ID = function () {
-    // Math.random should be unique because of its seeding algorithm.
-    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-    // after the decimal.
-    return  Math.random().toString(36).substr(2, 4);
+    return  Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
   };
-  const randNum = ID();
-  console.log(items)
+  const randLetters = ID();
+  console.log('隨機字母' + randLetters)
   let itemNames = items.map((item,i) => {
     if (i > 0) {
       return `#${item.item_name} x ${item.item_quantity} $${item.item_price}`;
@@ -39,9 +36,9 @@ function ecpay(orderNum, items, order,baseURL) {
   const totalAmount = order.total;
   const currentTime = new Date().Format("yyyy/MM/dd hh:mm:ss");
   let base_param = {
-    MerchantTradeNo: orderNum + randNum,
+    MerchantTradeNo: orderNum + randLetters,
     MerchantTradeDate: currentTime,
-    TotalAmount: totalAmount,
+    TotalAmount: String(totalAmount),
     TradeDesc: '測試交易描述',
     ItemName: itemNames,
     ReturnURL: baseURL + '/checkPayment',
@@ -49,7 +46,7 @@ function ecpay(orderNum, items, order,baseURL) {
     ClientBackURL: baseURL,
     // OrderResultURL: baseURL + '/checkPayment',
   };
-  console.log(base_param)
+  console.log(base_param);
   let create = new ecpay_payment();
   let html = create.payment_client.aio_check_out_all(parameters = base_param);
   return html;
@@ -194,7 +191,7 @@ const checkout_controller = {
     const isTransationOk = await orderTransaction(results.filterServerItems);
     if( isTransationOk ) {
       const newOrder = await createOrderIndatabase(customerId, buyerInfo, items)
-      const html = await ecpay(newOrder.order_number, items, newOrder, 'https://7d77321de000.ngrok.io');
+      const html = await ecpay(newOrder.order_number, items, newOrder, 'https://479aef3588a7.ngrok.io');
       return res.send({results, html})
     }
   },
@@ -227,7 +224,7 @@ const checkout_controller = {
     }
     
     // return res.send({orderNumber,items,order:order[0],itemIds})
-    const html = await ecpay(orderNumber, items.flat(), order[0], 'https://7d77321de000.ngrok.io');
+    const html = await ecpay(orderNumber, items.flat(), order[0], 'https://479aef3588a7.ngrok.io');
     return res.send({html, items:items.flat()})
   },
 
@@ -237,13 +234,14 @@ const checkout_controller = {
       req.flash('errorMessage', '付款失敗');
       return 
     }
+    console.log('checkPayment',MerchantTradeNo.replace(/[a-z]/gi,""));
     await Order.update(
       {
         status: 'paid'
       },
       {
       where: {
-        order_number:MerchantTradeNo
+        order_number:MerchantTradeNo.replace(/[a-z]/gi,"")
       }
     });
     req.flash('successMessage', '付款成功');
