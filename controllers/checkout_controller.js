@@ -191,7 +191,7 @@ const checkout_controller = {
     const isTransationOk = await orderTransaction(results.filterServerItems);
     if( isTransationOk ) {
       const newOrder = await createOrderIndatabase(customerId, buyerInfo, items)
-      const html = await ecpay(newOrder.order_number, items, newOrder, 'https://479aef3588a7.ngrok.io');
+      const html = await ecpay(newOrder.order_number, items, newOrder, 'https://just-a-bite.mentor4th-john.tw');
       return res.send({results, html})
     }
   },
@@ -224,7 +224,7 @@ const checkout_controller = {
     }
     
     // return res.send({orderNumber,items,order:order[0],itemIds})
-    const html = await ecpay(orderNumber, items.flat(), order[0], 'https://479aef3588a7.ngrok.io');
+    const html = await ecpay(orderNumber, items.flat(), order[0], 'https://just-a-bite.mentor4th-john.tw');
     return res.send({html, items:items.flat()})
   },
 
