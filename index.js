@@ -7,7 +7,6 @@ const session = require('express-session');
 const flash = require('connect-flash');
 
 const port = process.env.PORT || 3000;
-const port2 = process.env.PORT || 443;
 
 const index_controller = require('./controllers/index_controllers');
 const admin_controller = require('./controllers/admin_controllers');
