@@ -22,6 +22,14 @@ Date.prototype.Format = function (fmt) { //author: meizz
 
 
 function ecpay(orderNum, items, order,baseURL) {
+  const ID = function () {
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    return  Math.random().toString(36).substr(2, 4);
+  };
+  const randNum = ID();
+  console.log(items)
   let itemNames = items.map((item,i) => {
     if (i > 0) {
       return `#${item.item_name} x ${item.item_quantity} $${item.item_price}`;
@@ -31,7 +39,7 @@ function ecpay(orderNum, items, order,baseURL) {
   const totalAmount = order.total;
   const currentTime = new Date().Format("yyyy/MM/dd hh:mm:ss");
   let base_param = {
-    MerchantTradeNo: orderNum,
+    MerchantTradeNo: orderNum + randNum,
     MerchantTradeDate: currentTime,
     TotalAmount: totalAmount,
     TradeDesc: '測試交易描述',
@@ -193,8 +201,34 @@ const checkout_controller = {
 
   checkout: async (req, res) => {
     const { orderNumber } = req.body;
-    // const html = await ecpay(newOrder.order_number, items, newOrder, 'https://a3857b3232b9.ngrok.io');
-    // return res.send({results, html})
+    const order = await Order.findAll({
+      attributes: ['id','total'],
+      where: {
+        order_number:orderNumber
+      }
+    })
+    
+    const itemIds = await OrderItem.findAll({
+      attributes: ['ItemId','quantity'],
+      where: {
+        OrderId:order[0].id
+      }
+    })
+    
+    const items = [];
+    for(let i = 0; i < itemIds.length; i++) {
+      const item = await Item.findAll({
+        where:{
+          id:itemIds[i].ItemId
+        }
+      })
+      item[0].item_quantity = itemIds[i].quantity;
+      items.push(item);
+    }
+    
+    // return res.send({orderNumber,items,order:order[0],itemIds})
+    const html = await ecpay(orderNumber, items.flat(), order[0], 'https://7d77321de000.ngrok.io');
+    return res.send({html, items:items.flat()})
   },
 
   checkPayment: async (req, res) => {

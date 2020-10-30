@@ -48,7 +48,7 @@
           <% if( customerOrder.length ) { %>
             <% customerOrder.forEach(order => { %>
             <tr>
-              <td><%= order.order_number %></td>
+              <td class="order-number"><%= order.order_number %></td>
               <td><%= order.subtotal %></td>
               <td><%= order.total %></td>
               <td><%= order.shipping_address %></td>
