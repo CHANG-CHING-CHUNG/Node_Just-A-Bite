@@ -466,12 +466,66 @@ const admin_controller = {
     return next();
   },
   orderManagement: async (req, res, next) => {
-    const allOrders = await Order.findAll();
+    const { userId } = req.session;
+    if (!userId) {
+      return res.redirect("/admin");
+    }
+    const allOrders = await Order.findAll({
+      order: [["id", "DESC"]],
+    });
     res.render("orders", { allOrders });
   },
   handleUpdateOrderStatus: async (req, res, next) => {
-    const { order_status } = req.body;
-    console.log(order_status);
+    const { userId } = req.session;
+    if (!userId) {
+      return res.redirect("/admin");
+    }
+    const { order_status, order_id } = req.body;
+    if (order_status !== "1") {
+      req.flash("errorMessage", "POST 參數錯誤");
+      return next();
+    }
+    const result = await Order.update(
+      {
+        status: "shipped",
+      },
+      {
+        where: {
+          id: Number(order_id),
+        },
+      }
+    );
+    if (result[0] !== 1) {
+      req.flash("errorMessage", "更新失敗");
+      return next();
+    }
+
+    return next();
+  },
+  searchOrder: async (req, res, next) => {
+    const { userId } = req.session;
+    if (!userId) {
+      return res.redirect("/admin");
+    }
+    const { order_number } = req.body;
+    const result = await Order.findAll({
+      where: {
+        order_number,
+      },
+    });
+    if (!result.length) {
+      req.flash("errorMessage", "無此訂單");
+      return next();
+    }
+    req.session.singleOrder = result;
+    return next();
+  },
+  clearSearch: async (req, res, next) => {
+    const { userId } = req.session;
+    if (!userId) {
+      return res.redirect("/admin");
+    }
+    req.session.singleOrder = null;
     return next();
   },
 };

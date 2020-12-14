@@ -30,6 +30,7 @@ app.use((req, res, next) => {
   res.locals.username = req.session.username;
   res.locals.customerId = req.session.customerId;
   res.locals.customerUsername = req.session.customerUsername;
+  res.locals.singleOrder = req.session.singleOrder;
   res.locals.errorMessage = req.flash("errorMessage");
   res.locals.successMessage = req.flash("successMessage");
   next();
@@ -133,6 +134,9 @@ app.post(
   redirectBack
 );
 app.get("/order-management", admin_controller.orderManagement, redirectBack);
+
+app.post("/search-order", admin_controller.searchOrder, redirectBack);
+app.get("/clear-result", admin_controller.clearSearch, redirectBack);
 
 app.listen(port, () => {
   console.log(`Server is running...at${port}`);

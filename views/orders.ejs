@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/mobile.css" />
     <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/orders.css">
+    <link rel="stylesheet" href="/css/error.css">
     <title>咬一口廚房</title>
   </head>
 
@@ -43,6 +45,19 @@
           </header>
 
           <section class="item-list table-box center" style="width: 80%">
+            <% if (errorMessage.length) { %>
+              <div class="message error validation_errors">
+                <p><%= errorMessage %></p>
+              </div>
+            <% }%>
+            <form id="search-order" action="/search-order" method="POST">
+              <h3>搜尋訂單</h3>
+              <p>輸入訂單號碼查尋訂單</p>
+              <input name="order_number" type="text">
+              <button class="btn-delivery" type="submit">搜尋</button>
+              <a href="/clear-result"class="btn-clear">清除搜索結果</a>
+            </form>
+            <% if( singleOrder && singleOrder.length ) { %>
             <table class="item-table">
               <thead>
                 <tr>
@@ -56,8 +71,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% if( allOrders.length ) { %>
-                  <% allOrders.forEach(order => { %>
+                  <% singleOrder.forEach((order,i) => { %>
                   <tr>
                     <td class="order-number"><%= order.order_number %></td>
                     <td><%= order.subtotal %></td>
@@ -67,12 +81,53 @@
                     <td>
                       <%= order.status %>
                       <% if(order.status === 'paid') { %>
-                        <form id="update-order-status" action="/handleUpdateOrderStatus" method="POST"></form>
-                        <input type="hidden" name="order_status" form="update-order-status" value="1" />
-                        <button class="btn-delivery" form="update-order-status">外送完成</button>
+                        <form id="update-order-status<%=i%>" action="/handleUpdateOrderStatus" method="POST"></form>
+                        <input type="hidden" name="order_status" form="update-order-status<%=i%>" value="1" />
+                        <input type="hidden" name="order_id" form="update-order-status<%=i%>" value="<%= order.id %>" />
+                        <button class="btn-delivery" form="update-order-status<%=i%>">外送完成</button>
                       <% } %>
                     </td>
-                    <td><%= order.updatedAt %></td>
+                    <% 
+                      const d = new Date(String(order.updatedAt)); 
+                    %>
+                    <td><%= d.toLocaleString()%></td>
+                  </tr>
+                  <% }) %>
+                <% } %>
+              </tbody>
+            </table>
+            <br>
+            <table class="item-table">
+              <thead>
+                <tr>
+                  <th>訂單編號</th>
+                  <th>小計</th>
+                  <th>總額</th>
+                  <th>外送地址</th>
+                  <th>聯絡電話</th>
+                  <th>訂單狀態</th>
+                  <th>更新時間</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if( allOrders != undefined && allOrders.length ) { %>
+                  <% allOrders.forEach((order,i) => { %>
+                  <tr>
+                    <td class="order-number"><%= order.order_number %></td>
+                    <td><%= order.subtotal %></td>
+                    <td><%= order.total %></td>
+                    <td><%= order.shipping_address %></td>
+                    <td><%= order.phone %></td>
+                    <td>
+                      <%= order.status %>
+                      <% if(order.status === 'paid') { %>
+                        <form id="update-order-status<%=i%>" action="/handleUpdateOrderStatus" method="POST"></form>
+                        <input type="hidden" name="order_status" form="update-order-status<%=i%>" value="1" />
+                        <input type="hidden" name="order_id" form="update-order-status<%=i%>" value="<%= order.id %>" />
+                        <button class="btn-delivery" form="update-order-status<%=i%>">外送完成</button>
+                      <% } %>
+                    </td>
+                    <td><%= order.updatedAt.toLocaleString() %></td>
                   </tr>
                   <% }) %>
                 <% } %>
