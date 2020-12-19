@@ -1,5 +1,10 @@
 # Node Just A Bite 餐廳網站
-* 這是 Lidemy 程式導師計劃第4期的作業
+* 測試用會員帳號  
+帳號: john  
+密碼: john
+* 測試用後台帳號  
+帳號: admin  
+密碼: admin
 * [前台餐廳網站網址](https://just-a-bite.mentor4th-john.tw/)
 ![](https://i.imgur.com/jzHhcW4.jpg)
 
